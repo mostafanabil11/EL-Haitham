@@ -70,7 +70,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
-      <body className="min-h-full flex flex-col">
+      {/*
+        Also suppressed on <body>, for a different reason than <html>: browser
+        extensions inject attributes here before React hydrates (ColorZilla's
+        `cz-shortcut-listen`, password managers, translation tools). React
+        reports each one as a mismatch, which fills the console with warnings
+        nobody can act on and buries real ones.
+      */}
+      <body className="min-h-full flex flex-col" suppressHydrationWarning>
         {children}
         {/*
           Floating rather than in a header, because the public pages have no
