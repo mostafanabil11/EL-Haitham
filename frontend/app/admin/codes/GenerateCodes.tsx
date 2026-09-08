@@ -94,7 +94,7 @@ export function GenerateCodes({ lectures }: { lectures: AdminLecture[] }) {
             name="lectureId"
             required
             defaultValue=""
-            className="w-full rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="form-control text-sm"
           >
             <option value="" disabled>
               اختر محاضرة
@@ -118,7 +118,7 @@ export function GenerateCodes({ lectures }: { lectures: AdminLecture[] }) {
             defaultValue={10}
             required
             dir="ltr"
-            className="w-24 rounded-lg border border-border bg-card px-3 py-2.5 text-start text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="form-control w-24 text-start text-sm"
           />
         </label>
 
@@ -131,7 +131,7 @@ export function GenerateCodes({ lectures }: { lectures: AdminLecture[] }) {
             type="text"
             maxLength={300}
             placeholder="مثال: سنتر النور — دفعة يناير"
-            className="w-full rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="form-control text-sm"
           />
         </label>
 

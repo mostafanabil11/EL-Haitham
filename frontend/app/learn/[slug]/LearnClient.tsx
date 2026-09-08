@@ -36,8 +36,8 @@ export function LearnClient({
   if (!active) return null;
 
   return (
-    <div className="flex flex-col gap-6 lg:flex-row-reverse lg:items-start">
-      <div className="flex min-w-0 flex-1 flex-col gap-4">
+    <div className="flex flex-col gap-10 lg:flex-row-reverse lg:items-start">
+      <div className="flex min-w-0 flex-1 flex-col gap-6">
         {active.type === 'video' ? (
           <Player
             key={active.id}
@@ -91,8 +91,8 @@ export function LearnClient({
             <button
               key={item.id}
               onClick={() => setActiveId(item.id)}
-              className={`flex items-center gap-3 rounded-lg border px-3 py-2.5 text-start transition ${
-                isActive ? 'border-brand bg-brand/10' : 'border-border hover:border-brand/50'
+              className={`flex items-center gap-3 rounded-xl border px-4 py-4 text-start transition ${
+                isActive ? 'border-brand/40 bg-trough' : 'border-transparent hover:bg-trough'
               }`}
             >
               <span className="w-5 shrink-0 text-xs text-muted">{done ? '✓' : index + 1}</span>

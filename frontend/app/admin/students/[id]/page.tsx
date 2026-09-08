@@ -31,9 +31,19 @@ export default async function StudentPage({ params }: { params: Promise<{ id: st
           lastActiveAt ? `آخر مشاهدة ${relativeAr(lastActiveAt)}` : 'لم يشاهد شيئاً بعد',
         ].join(' · ')}
         action={
-          <Link href="/admin/students" className="text-sm text-link hover:underline">
-            رجوع للقائمة
-          </Link>
+          <div className="flex flex-wrap items-center gap-4 text-sm">
+            {/* Straight to this student's row in the report screen, which is
+                where a "how is my son doing?" message gets answered. */}
+            <Link
+              href={`/admin/reports?q=${encodeURIComponent(student.phone)}`}
+              className="text-link hover:underline"
+            >
+              تقرير ولي الأمر
+            </Link>
+            <Link href="/admin/students" className="text-link hover:underline">
+              رجوع للقائمة
+            </Link>
+          </div>
         }
       />
 

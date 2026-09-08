@@ -27,16 +27,11 @@ export function Field({
   const hintId = `${name}-hint`;
 
   return (
-    <div className="flex flex-col gap-1.5">
-      <label htmlFor={name} className="text-sm font-medium">
+    <div className="flex flex-col gap-2">
+      <label htmlFor={name} className="text-sm font-semibold text-foreground">
         {label}
         {required && <span className="text-danger"> *</span>}
       </label>
-      {hint && (
-        <p id={hintId} className="text-xs text-muted">
-          {hint}
-        </p>
-      )}
       <input
         id={name}
         name={name}
@@ -47,16 +42,23 @@ export function Field({
         inputMode={inputMode}
         defaultValue={defaultValue}
         aria-invalid={!!error}
-        aria-describedby={[hint ? hintId : null, error ? errorId : null].filter(Boolean).join(' ') || undefined}
+        aria-describedby={[
+          hint && !error ? hintId : null,
+          error ? errorId : null,
+        ].filter(Boolean).join(' ') || undefined}
         // dir="ltr" on phone inputs: an Egyptian number is read left to right
         // even inside an RTL page, and letting it inherit rtl puts the cursor
         // and the digits in visually confusing places while typing.
         dir={inputMode === 'tel' || type === 'email' ? 'ltr' : undefined}
-        className={`w-full rounded-lg border bg-transparent px-3 py-2.5 text-base outline-none transition
-          placeholder:text-muted/60 focus:ring-2 focus:ring-brand/40
-          ${error ? 'border-red-500' : 'border-border focus:border-brand'}
-          ${inputMode === 'tel' || type === 'email' ? 'text-start' : ''}`}
+        className={`form-control text-base ${
+          inputMode === 'tel' || type === 'email' ? 'text-start' : ''
+        }`}
       />
+      {hint && !error && (
+        <p id={hintId} className="px-1 text-xs leading-relaxed text-muted">
+          {hint}
+        </p>
+      )}
       {error && (
         <p id={errorId} role="alert" className="text-xs text-danger">
           {error}
@@ -84,8 +86,8 @@ export function SelectField({
   placeholder?: string;
 }) {
   return (
-    <div className="flex flex-col gap-1.5">
-      <label htmlFor={name} className="text-sm font-medium">
+    <div className="flex flex-col gap-2">
+      <label htmlFor={name} className="text-sm font-semibold text-foreground">
         {label}
         {required && <span className="text-danger"> *</span>}
       </label>
@@ -95,9 +97,7 @@ export function SelectField({
         required={required}
         defaultValue={defaultValue ?? ''}
         aria-invalid={!!error}
-        className={`w-full rounded-lg border bg-transparent px-3 py-2.5 text-base outline-none transition
-          focus:ring-2 focus:ring-brand/40
-          ${error ? 'border-red-500' : 'border-border focus:border-brand'}`}
+        className="form-control text-base"
       >
         {placeholder && (
           <option value="" disabled>
@@ -124,7 +124,7 @@ export function SubmitButton({ pending, children }: { pending: boolean; children
     <button
       type="submit"
       disabled={pending}
-      className="w-full rounded-lg bg-brand px-4 py-3 text-base font-semibold text-brand-contrast
+      className="w-full rounded-xl bg-brand px-4 py-3 text-base font-semibold text-brand-contrast
         transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
     >
       {pending ? '...' : children}

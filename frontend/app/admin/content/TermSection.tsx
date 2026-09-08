@@ -101,7 +101,7 @@ export function TermSection({ term, lectures }: { term: AdminTerm; lectures: Adm
               minLength={2}
               maxLength={200}
               placeholder="المحاضرة الأولى — الجملة الاسمية"
-              className="rounded-lg border border-border bg-card px-3 py-2 text-sm outline-none transition placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/40"
+              className="form-control text-sm"
             />
           </label>
           <label className="flex flex-col gap-1.5 text-sm">
@@ -114,7 +114,7 @@ export function TermSection({ term, lectures }: { term: AdminTerm; lectures: Adm
               defaultValue={75}
               required
               dir="ltr"
-              className="w-28 rounded-lg border border-border bg-card px-3 py-2 text-start text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+              className="form-control w-28 text-start text-sm"
             />
           </label>
           <button

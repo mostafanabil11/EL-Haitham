@@ -70,7 +70,7 @@ export function ThemeToggle({ className = '' }: { className?: string }) {
 
   if (theme === null) {
     // Same box as the real button, so the layout does not shift on hydration.
-    return <span aria-hidden className={`inline-block size-8 ${className}`} />;
+    return <span aria-hidden className={`inline-block size-11 ${className}`} />;
   }
 
   const next = ORDER[(ORDER.indexOf(theme) + 1) % ORDER.length];
@@ -84,8 +84,8 @@ export function ThemeToggle({ className = '' }: { className?: string }) {
       }}
       title={`المظهر: ${LABEL[theme]} — اضغط للتبديل إلى ${LABEL[next]}`}
       aria-label={`المظهر الحالي ${LABEL[theme]}. اضغط للتبديل إلى ${LABEL[next]}`}
-      className={`inline-flex size-8 items-center justify-center rounded-lg border border-border
-        text-muted transition hover:border-brand/40 hover:text-foreground ${className}`}
+      className={`inline-flex size-11 items-center justify-center rounded-xl
+        text-muted transition hover:bg-trough hover:text-foreground ${className}`}
     >
       <ThemeIcon theme={theme} />
     </button>

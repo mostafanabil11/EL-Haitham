@@ -24,13 +24,13 @@ export default async function LecturesPage({
   const { lectures, total } = await getCatalog({ grade: activeGrade, limit: 60 });
 
   return (
-    <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-6 px-5 py-10">
+    <main className="page-shell flex flex-1 flex-col gap-10 py-12 sm:py-16">
       <div className="flex flex-col gap-2">
         <h1 className="text-3xl font-bold">المحاضرات</h1>
         <p className="text-sm text-muted">{total} محاضرة متاحة</p>
       </div>
 
-      <nav aria-label="تصفية حسب الصف" className="flex flex-wrap gap-2">
+      <nav aria-label="تصفية حسب الصف" className="flex flex-wrap gap-2 border-b border-border pb-5">
         <FilterPill href="/lectures" label="كل الصفوف" active={!activeGrade} />
         {GRADES.map((g) => (
           <FilterPill
@@ -47,7 +47,7 @@ export default async function LecturesPage({
           لا توجد محاضرات متاحة في هذا الصف حالياً.
         </p>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2">
           {lectures.map((lecture) => (
             <LectureCard key={lecture._id} lecture={lecture} />
           ))}
@@ -62,11 +62,7 @@ function FilterPill({ href, label, active }: { href: string; label: string; acti
     <Link
       href={href}
       aria-current={active ? 'page' : undefined}
-      className={`rounded-full border px-3.5 py-1.5 text-sm transition ${
-        active
-          ? 'border-brand bg-brand text-brand-contrast'
-          : 'border-border text-muted hover:border-brand/40 hover:text-foreground'
-      }`}
+      className="filter-link"
     >
       {label}
     </Link>

@@ -21,8 +21,8 @@ export default async function LearnPage({ params }: Props) {
   if (!lecture) notFound();
 
   return (
-    <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-5 px-5 py-8">
-      <div className="flex flex-col gap-1">
+    <main className="page-shell flex flex-1 flex-col gap-10 py-12">
+      <div className="flex flex-col gap-4">
         <Link
           href={`/lectures/${slug}`}
           className="text-sm text-muted transition hover:text-foreground"

@@ -64,12 +64,12 @@ export default async function LecturePage({ params }: Props) {
   const freeCount = lecture.items.filter((i) => i.isFreePreview).length;
 
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-6 px-5 py-10">
+    <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-10 px-5 py-12 sm:py-16">
       <Link href="/lectures" className="text-sm text-muted transition hover:text-foreground">
         &#8594; كل المحاضرات
       </Link>
 
-      <header className="flex flex-col gap-3">
+      <header className="flex flex-col gap-5">
         <div className="flex flex-wrap items-center gap-2 text-xs text-muted">
           <span className="rounded-full bg-border/40 px-2.5 py-1">
             {GRADE_LABELS_AR[lecture.grade]}
@@ -77,7 +77,7 @@ export default async function LecturePage({ params }: Props) {
           {lecture.term && <span className="rounded-full bg-border/40 px-2.5 py-1">{lecture.term.titleAr}</span>}
         </div>
 
-        <h1 className="text-3xl font-bold leading-tight">{lecture.titleAr}</h1>
+        <h1 className="text-3xl font-semibold leading-relaxed">{lecture.titleAr}</h1>
 
         {lecture.description && <p className="text-muted">{lecture.description}</p>}
 
@@ -95,7 +95,7 @@ export default async function LecturePage({ params }: Props) {
       </header>
 
       {owned ? (
-        <section className="flex flex-col gap-2 rounded-xl border border-brand/40 bg-brand/5 p-5">
+        <section className="flex flex-col gap-2 rounded-2xl border border-border bg-card p-6 sm:p-8">
           <p className="font-semibold text-link">أنت مشترك في هذه المحاضرة</p>
           <Link
             href={`/learn/${lecture.slug}`}
@@ -105,10 +105,10 @@ export default async function LecturePage({ params }: Props) {
           </Link>
         </section>
       ) : (
-      <section className="flex flex-col gap-3 rounded-xl border border-brand/40 bg-brand/5 p-5">
+      <section className="flex flex-col gap-3 rounded-2xl border border-border bg-card p-6 sm:p-8">
         <div className="flex items-baseline justify-between gap-4">
           <span className="text-sm text-muted">سعر المحاضرة</span>
-          <span className="text-2xl font-bold text-link">{price}</span>
+          <span className="text-2xl font-bold text-accent">{price}</span>
         </div>
 
         <BuyButton
@@ -128,7 +128,7 @@ export default async function LecturePage({ params }: Props) {
       </section>
       )}
 
-      <section className="flex flex-col gap-3">
+      <section className="flex flex-col gap-6">
         <h2 className="text-lg font-semibold">محتوى المحاضرة</h2>
 
         {/* The curriculum is public. A visitor sees exactly what they would be
@@ -139,7 +139,7 @@ export default async function LecturePage({ params }: Props) {
           {lecture.items.map((item, index) => (
             <li
               key={item.id}
-              className="flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3"
+              className="flex items-center gap-3 rounded-xl border border-border bg-card px-5 py-5"
             >
               <span className="w-6 shrink-0 text-sm text-muted">{index + 1}</span>
 
@@ -154,7 +154,7 @@ export default async function LecturePage({ params }: Props) {
               {item.isFreePreview ? (
                 <Link
                   href={`/learn/${lecture.slug}`}
-                  className="shrink-0 rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-link transition hover:bg-brand/25"
+                  className="shrink-0 rounded-full bg-trough px-3 py-2.5 text-xs font-medium text-link transition hover:bg-brand/25"
                 >
                   شاهد مجاناً
                 </Link>

@@ -74,7 +74,7 @@ export function CreateTerm() {
             minLength={2}
             maxLength={120}
             placeholder="الترم الأول"
-            className="rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="form-control text-sm"
           />
         </label>
 
@@ -84,7 +84,7 @@ export function CreateTerm() {
             name="grade"
             required
             defaultValue=""
-            className="rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="form-control text-sm"
           >
             <option value="" disabled>
               اختر
@@ -105,7 +105,7 @@ export function CreateTerm() {
             dir="ltr"
             pattern="\d{4}/\d{4}"
             defaultValue={currentAcademicYear()}
-            className="rounded-lg border border-border bg-card px-3 py-2.5 text-start text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="form-control text-start text-sm"
           />
         </label>
 

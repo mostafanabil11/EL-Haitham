@@ -45,7 +45,7 @@ export function LoginForm({ next = '/dashboard' }: { next?: string }) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-col gap-4" noValidate>
+    <form onSubmit={onSubmit} className="flex flex-col gap-6" noValidate>
       <FormError message={error} />
 
       <Field

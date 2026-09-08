@@ -83,7 +83,7 @@ export function SettingsForm({ settings }: { settings: AdminSettings }) {
               rows={3}
               maxLength={2000}
               defaultValue={settings.teacherBio ?? ''}
-              className="rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+              className="form-control min-h-28 text-sm"
             />
           </label>
         </div>
@@ -193,9 +193,7 @@ function TextInput({
         required={required}
         pattern={pattern}
         defaultValue={defaultValue}
-        className={`rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40 ${
-          dir === 'ltr' ? 'text-start' : ''
-        }`}
+        className={`form-control text-sm ${dir === 'ltr' ? 'text-start' : ''}`}
       />
     </label>
   );

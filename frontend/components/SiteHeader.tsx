@@ -18,27 +18,24 @@ export async function SiteHeader() {
   const accountHref = user ? (user.role === 'admin' ? '/admin' : '/dashboard') : '/login';
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-card/90 backdrop-blur">
-      <div className="mx-auto flex h-14 w-full max-w-5xl items-center gap-4 px-5">
-        {/* The mark is a navy tile with the site's initial — the design leads
-            with a solid navy block, and one letter survives a 375px header
-            where a wordmark would truncate to nothing. */}
-        <Link href="/" className="flex min-w-0 items-center gap-2.5">
+    <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
+      <div className="page-shell flex min-h-20 flex-wrap items-center gap-x-3 gap-y-2 py-3 sm:gap-x-6">
+        <Link href="/" className="flex min-w-0 flex-1 items-center gap-3">
           <span
             aria-hidden
-            className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-panel text-sm font-bold text-panel-foreground"
+            className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-brand text-lg font-semibold text-brand-contrast shadow-sm"
           >
             {[...siteName.trim()][0] ?? 'م'}
           </span>
-          <span className="truncate text-base font-bold transition hover:text-link">
+          <span className="truncate text-sm font-semibold transition hover:text-link sm:text-base">
             {siteName}
           </span>
         </Link>
 
-        <nav className="ms-auto flex items-center gap-1 text-sm">
+        <nav aria-label="التنقل الرئيسي" className="order-last flex w-full items-center justify-center gap-2 border-t border-border pt-2 text-sm sm:order-none sm:ms-auto sm:w-auto sm:border-0 sm:pt-0">
           <Link
             href="/lectures"
-            className="rounded-lg px-3 py-1.5 text-muted transition hover:bg-trough hover:text-foreground"
+            className="rounded-lg px-4 py-2.5 text-muted transition hover:bg-trough hover:text-foreground"
           >
             المحاضرات
           </Link>
@@ -49,14 +46,14 @@ export async function SiteHeader() {
           {user && user.role !== 'admin' && (
             <Link
               href="/redeem"
-              className="rounded-lg px-3 py-1.5 text-muted transition hover:bg-trough hover:text-foreground"
+              className="rounded-lg px-4 py-2.5 text-muted transition hover:bg-trough hover:text-foreground"
             >
               تفعيل كود
             </Link>
           )}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           <ThemeToggle />
           <AccountButton href={accountHref} name={user?.name ?? null} />
         </div>
@@ -72,8 +69,8 @@ function AccountButton({ href, name }: { href: string; name: string | null }) {
         href={href}
         aria-label="تسجيل الدخول"
         title="تسجيل الدخول"
-        className="inline-flex size-8 items-center justify-center rounded-full border border-border
-          text-muted transition hover:border-brand/40 hover:text-foreground"
+        className="inline-flex size-11 items-center justify-center rounded-xl
+          text-muted transition hover:bg-trough hover:text-foreground"
       >
         <svg
           width="16"
@@ -101,8 +98,8 @@ function AccountButton({ href, name }: { href: string; name: string | null }) {
       href={href}
       aria-label={`حسابي — ${name}`}
       title={name}
-      className="inline-flex size-8 items-center justify-center rounded-full bg-accent text-sm
-        font-bold text-accent-contrast transition hover:opacity-90"
+      className="inline-flex size-11 items-center justify-center rounded-xl bg-trough text-sm
+        font-semibold text-link transition hover:opacity-90"
     >
       {[...name.trim()][0] ?? '؟'}
     </Link>

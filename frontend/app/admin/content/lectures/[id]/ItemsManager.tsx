@@ -275,7 +275,7 @@ function ItemFields({ item }: { item?: AdminLectureItem }) {
           maxLength={200}
           defaultValue={item?.titleAr ?? ''}
           placeholder="شرح الدرس"
-          className="rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/40"
+          className="form-control text-sm"
         />
       </label>
 
@@ -286,7 +286,7 @@ function ItemFields({ item }: { item?: AdminLectureItem }) {
             name="type"
             value={type}
             onChange={(event) => setType(event.target.value as LectureItemType)}
-            className="rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="form-control text-sm"
           >
             {(Object.keys(TYPE_LABEL) as LectureItemType[]).map((value) => (
               <option key={value} value={value}>
@@ -308,7 +308,7 @@ function ItemFields({ item }: { item?: AdminLectureItem }) {
               dir="ltr"
               maxLength={200}
               defaultValue={item?.videoAssetId ?? ''}
-              className="rounded-lg border border-border bg-card px-3 py-2.5 text-start text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+              className="form-control text-start text-sm"
             />
           </label>
           <label className="flex flex-col gap-1.5 text-sm">
@@ -320,7 +320,7 @@ function ItemFields({ item }: { item?: AdminLectureItem }) {
               step={1}
               dir="ltr"
               defaultValue={item ? Math.round(item.videoDurationSeconds / 60) : 0}
-              className="rounded-lg border border-border bg-card px-3 py-2.5 text-start text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+              className="form-control text-start text-sm"
             />
           </label>
         </>
@@ -334,7 +334,7 @@ function ItemFields({ item }: { item?: AdminLectureItem }) {
             rows={5}
             required
             defaultValue={item?.contentHtml ?? ''}
-            className="rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="form-control min-h-28 text-sm"
           />
         </label>
       )}

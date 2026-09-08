@@ -29,7 +29,7 @@ export default async function StudentsPage({
           type="search"
           defaultValue={q ?? ''}
           placeholder="ابحث برقم الهاتف أو رقم ولي الأمر أو الاسم"
-          className="w-full rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/40"
+          className="form-control text-sm"
         />
         <button
           type="submit"

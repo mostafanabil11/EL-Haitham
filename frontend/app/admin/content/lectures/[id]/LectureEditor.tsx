@@ -136,7 +136,7 @@ export function LectureEditor({ lecture }: { lecture: AdminLectureDetail }) {
             minLength={2}
             maxLength={200}
             defaultValue={lecture.titleAr}
-            className="rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="form-control text-sm"
           />
         </label>
 
@@ -150,7 +150,7 @@ export function LectureEditor({ lecture }: { lecture: AdminLectureDetail }) {
             required
             dir="ltr"
             defaultValue={lecture.priceMinorUnits / 100}
-            className="rounded-lg border border-border bg-card px-3 py-2.5 text-start text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="form-control text-start text-sm"
           />
         </label>
 
@@ -165,7 +165,7 @@ export function LectureEditor({ lecture }: { lecture: AdminLectureDetail }) {
             max={730}
             dir="ltr"
             defaultValue={lecture.accessDurationDays ?? ''}
-            className="rounded-lg border border-border bg-card px-3 py-2.5 text-start text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="form-control text-start text-sm"
           />
         </label>
 
@@ -178,7 +178,7 @@ export function LectureEditor({ lecture }: { lecture: AdminLectureDetail }) {
             rows={3}
             maxLength={3000}
             defaultValue={lecture.description ?? ''}
-            className="rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="form-control min-h-28 text-sm"
           />
         </label>
 

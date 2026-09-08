@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AdminService } from './admin.service';
 import { AdminOverviewService } from './admin-overview.service';
+import { AdminReportsService } from './admin-reports.service';
 import { AdminController } from './admin.controller';
 import { AuditListener } from './listeners/audit.listener';
 import { AuditLog, AuditLogSchema } from './schemas/audit-log.schema';
@@ -14,9 +15,12 @@ import {
 } from '@/commerce/schemas/purchase-request.schema';
 import { Lecture, LectureSchema } from '@/content/schemas/lecture.schema';
 import { Progress, ProgressSchema } from '@/learn/schemas/progress.schema';
+import { SettingsModule } from '@/settings/settings.module';
 
 @Module({
   imports: [
+    // The parent report signs off with the site's name.
+    SettingsModule,
     MongooseModule.forFeature([
       { name: AuditLog.name, schema: AuditLogSchema },
       // Read-only here: the student list, the overview counters and the audit
@@ -32,6 +36,6 @@ import { Progress, ProgressSchema } from '@/learn/schemas/progress.schema';
     ]),
   ],
   controllers: [AdminController],
-  providers: [AdminService, AdminOverviewService, AuditListener],
+  providers: [AdminService, AdminOverviewService, AdminReportsService, AuditListener],
 })
 export class AdminModule {}

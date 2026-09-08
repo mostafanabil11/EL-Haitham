@@ -124,7 +124,7 @@ export function StudentActions({
               name="lectureId"
               required
               defaultValue=""
-              className="w-full rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+              className="form-control text-sm"
             >
               <option value="" disabled>
                 اختر محاضرة
@@ -164,7 +164,7 @@ export function StudentActions({
               dir="ltr"
               autoComplete="off"
               placeholder="8 أحرف على الأقل"
-              className="w-full rounded-lg border border-border bg-card px-3 py-2.5 text-start text-sm outline-none transition placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/40"
+              className="form-control text-start text-sm"
             />
           </label>
           <button

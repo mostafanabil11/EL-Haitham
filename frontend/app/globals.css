@@ -20,41 +20,26 @@
   }
 }
 
-/*
- * Palette from design/…/DESIGN.md — "Modern Scholarly Arabic Academy".
- *
- * Three colours carry the whole system:
- *   navy  — authority. Primary actions, headings, the surfaces that frame content.
- *   gold  — achievement. Progress, milestones, the one action on a dark surface.
- *   teal  — navigation. Links and secondary metrics, so they read as clickable
- *           next to navy body text rather than disappearing into it.
- *
- * Light is the base, and every token is defined here so none can exist only
- * inside a media query.
- */
+/* A restrained blue-and-gold identity drawn from the teacher's existing site. */
 :root {
-  --background: #f8fafc; /* base ground — cool alabaster, glare-free for long reading */
+  --background: #f7f8fc;
   --card: #ffffff;
-  --trough: #f1f5f9; /* inset surfaces, track backgrounds, disabled rows */
-  --foreground: #0b1c30;
-  --muted: #51607a;
-  --border: #e2e8f0;
-  --border-strong: #cbd5e1;
-
-  --brand: #16203b; /* primary action */
+  --trough: #eef1f8;
+  --foreground: #171d32;
+  --muted: #667089;
+  --border: #e1e5ef;
+  --border-strong: #c5ccdc;
+  --brand: #3157a4;
   --brand-contrast: #ffffff;
-  --accent: #c5933a; /* amber gold */
-  --accent-contrast: #16203b;
-  --link: #1e6b7b; /* warm teal */
-
-  --success: #15803d;
-  --danger: #b91c1c;
-
-  /* The dark panel used for heroes and the "now playing" row, which stays dark
-     in both themes — it is a deliberate surface, not a consequence of theme. */
-  --panel: #16203b;
-  --panel-foreground: #eaf1ff;
-  --panel-muted: #9fb0cc;
+  --accent: #a96e2c;
+  --accent-contrast: #ffffff;
+  --link: #3157a4;
+  --success: #28704a;
+  --danger: #b33939;
+  --panel: #e9eef9;
+  --panel-foreground: #17213a;
+  --panel-muted: #59657f;
+  color-scheme: light;
 }
 
 @theme inline {
@@ -78,62 +63,48 @@
   --font-sans: var(--font-plex-arabic);
 }
 
-/*
- * Dark counterpart.
- *
- * Navy cannot lead here — a navy button on a navy page is invisible — so the
- * roles swap and gold becomes the primary action. That is what the design
- * itself does on its dark panels: every call to action sitting on navy in the
- * mockups is gold.
- */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --background: #0a1120;
-    --card: #131d33;
-    --trough: #1a2540;
-    --foreground: #eaf1ff;
-    --muted: #9aa9c4;
-    --border: #24314e;
-    --border-strong: #35456a;
-
-    --brand: #e0b45f;
-    --brand-contrast: #16203b;
-    --accent: #e0b45f;
-    --accent-contrast: #16203b;
-    --link: #7fc8d8;
-
-    --success: #4ade80;
-    --danger: #f87171;
-
-    /* Already dark; a touch lighter than the page so the panel still reads as
-       a raised surface rather than a hole. */
-    --panel: #1b2740;
-    --panel-foreground: #eaf1ff;
-    --panel-muted: #9fb0cc;
+    --background: #0b1020;
+    --card: #121a2c;
+    --trough: #1a2439;
+    --foreground: #edf1fc;
+    --muted: #9ca8c1;
+    --border: #253149;
+    --border-strong: #43516c;
+    --brand: #8fb3ff;
+    --brand-contrast: #102044;
+    --accent: #e2b36e;
+    --accent-contrast: #282012;
+    --link: #9bbcff;
+    --success: #8dccaa;
+    --danger: #f39e98;
+    --panel: #151f34;
+    --panel-foreground: #edf1fc;
+    --panel-muted: #a6b1c8;
+    color-scheme: dark;
   }
 }
 
 :root[data-theme="dark"] {
-  --background: #0a1120;
-  --card: #131d33;
-  --trough: #1a2540;
-  --foreground: #eaf1ff;
-  --muted: #9aa9c4;
-  --border: #24314e;
-  --border-strong: #35456a;
-
-  --brand: #e0b45f;
-  --brand-contrast: #16203b;
-  --accent: #e0b45f;
-  --accent-contrast: #16203b;
-  --link: #7fc8d8;
-
-  --success: #4ade80;
-  --danger: #f87171;
-
-  --panel: #1b2740;
-  --panel-foreground: #eaf1ff;
-  --panel-muted: #9fb0cc;
+    --background: #0b1020;
+    --card: #121a2c;
+    --trough: #1a2439;
+    --foreground: #edf1fc;
+    --muted: #9ca8c1;
+    --border: #253149;
+    --border-strong: #43516c;
+    --brand: #8fb3ff;
+    --brand-contrast: #102044;
+    --accent: #e2b36e;
+    --accent-contrast: #282012;
+    --link: #9bbcff;
+    --success: #8dccaa;
+    --danger: #f39e98;
+    --panel: #151f34;
+    --panel-foreground: #edf1fc;
+    --panel-muted: #a6b1c8;
+    color-scheme: dark;
 }
 
 body {
@@ -155,29 +126,93 @@ h3 {
   line-height: 1.35;
 }
 
-/*
- * Tells the browser which way its own chrome should go — form controls, the
- * scrollbar, and the default canvas behind the page. Without it a light page
- * on a dark-mode OS still gets a dark scrollbar and dark <select> popups.
- */
-:root {
-  color-scheme: light;
+/* Visible keyboard navigation without adding visual weight at rest. */
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 4px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
+:where(button, a, input, select, textarea) {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@layer components {
+  .page-shell {
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 3rem);
+  }
+
+  .page-section {
+    padding-block: clamp(3.5rem, 7vw, 5.5rem);
+  }
+
+  .filter-link {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    color: var(--muted);
+    transition: background-color 150ms, color 150ms;
+  }
+
+  .filter-link:hover {
+    background: var(--trough);
+    color: var(--foreground);
+  }
+
+  .filter-link[aria-current="page"] {
+    background: var(--trough);
+    color: var(--link);
+    font-weight: 600;
+  }
+
+  .form-control {
+    width: 100%;
+    min-height: 3.25rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 0.875rem;
+    background: var(--trough);
+    padding: 0.75rem 1rem;
+    color: var(--foreground);
+    outline: none;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.45);
+    transition: border-color 150ms, background-color 150ms, box-shadow 150ms;
+  }
+
+  .form-control::placeholder {
+    color: var(--muted);
+    opacity: 0.62;
+  }
+
+  .form-control:hover {
+    border-color: var(--muted);
+  }
+
+  .form-control:focus {
+    border-color: var(--brand);
+    background: var(--card);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--brand) 14%, transparent);
+  }
+
+  .form-control:focus-visible {
+    outline: none;
+  }
+
+  .form-control[aria-invalid="true"] {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--danger) 10%, transparent);
   }
 }
 
-:root[data-theme="dark"] {
-  color-scheme: dark;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    animation-duration: 0s !important;
+  }
 }
-
-/*
- * Use logical properties throughout this project — `ps-*`/`pe-*`/`ms-*`/`me-*`
- * and `text-start`/`text-end`, never `pl-*`/`pr-*`/`text-left`/`text-right`.
- * Tailwind resolves them against `dir`, so the layout stays correct if an
- * English or LTR view is ever added, and it stops the mirrored-padding bugs
- * that RTL sites collect otherwise.
- */

@@ -295,3 +295,56 @@ export async function getAdminSettings(): Promise<AdminSettings | null> {
   const result = await adminFetch<AdminSettings>('/settings');
   return result?.data ?? null;
 }
+
+export type ReportLine = {
+  lectureId: string;
+  titleAr: string;
+  percentWatched: number;
+  isComplete: boolean;
+  hasStarted: boolean;
+  activeThisPeriod: boolean;
+};
+
+export type StudentReport = {
+  studentId: string;
+  name: string;
+  grade: string | null;
+  phoneLocal: string;
+  parentPhoneLocal: string;
+  periodLabel: string;
+  lectures: ReportLine[];
+  lectureCount: number;
+  completedCount: number;
+  startedCount: number;
+  averagePercent: number;
+  lastActiveAt: string | null;
+  message: string;
+  whatsappUrl: string | null;
+};
+
+export async function getReports(params: {
+  month?: string;
+  q?: string;
+  page?: number;
+  limit?: number;
+} = {}): Promise<Paginated<StudentReport>> {
+  const query = new URLSearchParams();
+  if (params.month) query.set('month', params.month);
+  if (params.q) query.set('q', params.q);
+  if (params.page) query.set('page', String(params.page));
+  const limit = params.limit ?? 20;
+  query.set('limit', String(limit));
+
+  return paginated(await adminFetch<StudentReport[]>(`/admin/reports?${query}`), limit);
+}
+
+export async function getStudentReport(
+  id: string,
+  month?: string,
+): Promise<StudentReport | null> {
+  const query = month ? `?month=${encodeURIComponent(month)}` : '';
+  const result = await adminFetch<StudentReport>(
+    `/admin/students/${encodeURIComponent(id)}/report${query}`,
+  );
+  return result?.data ?? null;
+}

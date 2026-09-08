@@ -10,10 +10,10 @@ export function PageHeader({
   action?: React.ReactNode;
 }) {
   return (
-    <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
+    <div className="mb-10 flex flex-wrap items-start justify-between gap-3">
       <div>
-        <h1 className="text-xl font-bold">{title}</h1>
-        {subtitle && <p className="mt-1 text-sm text-muted">{subtitle}</p>}
+        <h1 className="text-2xl font-semibold">{title}</h1>
+        {subtitle && <p className="mt-3 text-sm text-muted">{subtitle}</p>}
       </div>
       {action}
     </div>
@@ -38,13 +38,13 @@ export function StatCard({
   const body = (
     <>
       <p className="text-xs text-muted">{label}</p>
-      <p className={`mt-1 text-2xl font-bold ${emphasis ? 'text-link' : ''}`}>{value}</p>
+      <p className={`mt-3 text-3xl font-semibold ${emphasis ? 'text-link' : ''}`}>{value}</p>
       {hint && <p className="mt-1 text-xs text-muted">{hint}</p>}
     </>
   );
 
-  const className = `rounded-xl border p-4 ${
-    emphasis ? 'border-brand/50 bg-brand/5' : 'border-border'
+  const className = `rounded-2xl border p-5 sm:p-6 ${
+    emphasis ? 'border-brand/25 bg-trough' : 'border-border bg-card'
   } ${href ? 'transition hover:border-brand/40' : ''}`;
 
   return href ? (
@@ -94,7 +94,7 @@ export function EmptyState({ children }: { children: React.ReactNode }) {
  * sideways.
  */
 export function Card({ children }: { children: React.ReactNode }) {
-  return <div className="rounded-2xl border border-border bg-card p-4">{children}</div>;
+  return <div className="rounded-2xl border border-border bg-card p-5 sm:p-7">{children}</div>;
 }
 
 export function Pagination({

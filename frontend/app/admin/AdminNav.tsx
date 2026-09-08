@@ -8,6 +8,7 @@ const LINKS = [
   { href: '/admin/requests', label: 'الطلبات' },
   { href: '/admin/codes', label: 'الأكواد' },
   { href: '/admin/students', label: 'الطلاب' },
+  { href: '/admin/reports', label: 'تقارير أولياء الأمور' },
   { href: '/admin/content', label: 'المحتوى' },
   { href: '/admin/settings', label: 'الإعدادات' },
 ];
@@ -27,7 +28,7 @@ export function AdminNav() {
       {/* Scrolls horizontally rather than wrapping: the teacher works from a
           phone as often as a laptop, and a wrapped nav pushes the content of
           every page below the fold on a 375px screen. */}
-      <nav className="mx-auto -mb-px flex w-full max-w-6xl gap-1 overflow-x-auto px-5 py-2">
+      <nav className="page-shell flex gap-2 overflow-x-auto py-3">
         {LINKS.map((link) => {
           const active =
             link.href === '/admin' ? pathname === '/admin' : pathname.startsWith(link.href);
@@ -36,9 +37,9 @@ export function AdminNav() {
               key={link.href}
               href={link.href}
               aria-current={active ? 'page' : undefined}
-              className={`shrink-0 rounded-lg px-3 py-1.5 text-sm transition ${
+              className={`shrink-0 rounded-lg px-4 py-2.5 text-sm transition ${
                 active
-                  ? 'bg-brand text-brand-contrast font-semibold'
+                  ? 'bg-trough text-link font-semibold'
                   : 'text-muted hover:bg-border/50 hover:text-foreground'
               }`}
             >

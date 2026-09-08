@@ -25,7 +25,7 @@ export default async function AdminOverviewPage() {
         subtitle={`${students.total} طالب · ${overview.publishedLectures} محاضرة منشورة`}
       />
 
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {/* First card, and the only coloured one: it is the only number that
             means a person is waiting for the teacher to do something. */}
         <StatCard
@@ -52,13 +52,13 @@ export default async function AdminOverviewPage() {
         />
       </div>
 
-      <div className="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <div className="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard label="إجمالي الطلاب" value={students.total} href="/admin/students" />
         <StatCard label="طلاب جدد هذا الشهر" value={students.newThisMonth} />
       </div>
 
-      <section className="mt-8">
-        <div className="mb-3 flex items-center justify-between gap-3">
+      <section className="mt-12">
+        <div className="mb-5 flex items-center justify-between gap-3">
           <h2 className="text-base font-semibold">أقدم الطلبات المعلّقة</h2>
           <Link href="/admin/requests" className="text-sm text-link hover:underline">
             كل الطلبات
@@ -72,7 +72,7 @@ export default async function AdminOverviewPage() {
             {oldestPending.map((request) => (
               <li
                 key={request._id}
-                className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-card px-4 py-3"
+                className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-card px-5 py-5"
               >
                 <div className="min-w-0">
                   <p className="truncate text-sm font-medium">{request.titleSnapshot}</p>
@@ -93,8 +93,8 @@ export default async function AdminOverviewPage() {
         )}
       </section>
 
-      <section className="mt-8">
-        <h2 className="mb-3 text-base font-semibold">الأكثر مشاهدة</h2>
+      <section className="mt-12">
+        <h2 className="mb-5 text-base font-semibold">الأكثر مشاهدة</h2>
 
         {mostWatched.length === 0 ? (
           <EmptyState>لا توجد مشاهدات مسجّلة بعد.</EmptyState>
@@ -103,7 +103,7 @@ export default async function AdminOverviewPage() {
             {mostWatched.map((lecture) => (
               <li
                 key={lecture.id}
-                className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-card px-4 py-3"
+                className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-card px-5 py-5"
               >
                 <div className="min-w-0">
                   <p className="truncate text-sm font-medium">{lecture.titleAr}</p>

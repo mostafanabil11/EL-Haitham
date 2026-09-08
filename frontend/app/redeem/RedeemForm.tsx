@@ -85,7 +85,7 @@ export function RedeemForm() {
           // Centred and letter-spaced: a code is read character by character,
           // and the extra spacing is what makes a mistyped one visible before
           // the student presses the button.
-          className="w-full rounded-lg border border-border bg-card px-3 py-3 text-center font-mono text-lg tracking-[0.2em] outline-none transition placeholder:tracking-normal placeholder:text-muted/50 focus:border-brand focus:ring-2 focus:ring-brand/40"
+          className="form-control text-center font-mono text-lg tracking-[0.2em] placeholder:tracking-normal"
         />
       </div>
 
