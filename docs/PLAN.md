@@ -72,6 +72,13 @@ Two things they get right that we copy outright: **phone-only auth with a parent
 
 ## 1. What we reuse from the clothing-brand backend
 
+> **The inherited code is gone as of the initial commit.** `_reference/` (coupons, orders) and
+> `_archive/` (Paymob) were kept as templates while Phases 3 and 4 were written against them; both
+> have served their purpose and were deleted. The transactional emails were rewritten in Arabic and
+> the e-commerce ones (order shipped/delivered/refunded/cancelled, back-in-stock, abandoned cart)
+> removed along with the dead Google OAuth config. The table below stays as a record of what
+> transferred and why.
+
 The old backend is genuinely well-built in the areas that matter here. Roughly 40% transfers.
 
 ### Copy nearly as-is
@@ -520,6 +527,19 @@ interface VideoProvider {
 - Numerals: **Western digits (1, 2, 3)** for prices, durations and codes — Arabic-Indic numerals in a
   code field cause input errors. Body text stays Arabic.
 - The video player needs explicit RTL handling; most players assume an LTR seek bar.
+- **Theme: light / dark / follow the system**, switchable from a floating control on every page.
+  Three details make it behave rather than half-work:
+  - The dark palette applies under `prefers-color-scheme` **only while no explicit choice is stored**
+    (`:root:not([data-theme="light"])`). Without that guard, choosing light on a dark-mode phone does
+    nothing, because the media query keeps winning.
+  - An inline script in `<head>` stamps the saved choice before first paint. A `useEffect` would
+    paint the OS palette first and snap to the chosen one on hydration.
+  - Tailwind's `dark:` variant is redefined with the same two-way rule. Left at its default it keys
+    off `prefers-color-scheme` alone, so on a dark-mode device a page switched to light would turn
+    light while every `dark:` utility stayed dark — mistinting the status pills against their new
+    background.
+  - "Follow the system" is stored as the *absence* of a value, not the word "system". Resolving it to
+    a concrete light/dark at pick-time would freeze the palette at whatever the OS was that day.
 
 **Done when:** a student can watch a purchased lesson end to end, close the tab, and resume where they
 stopped.
