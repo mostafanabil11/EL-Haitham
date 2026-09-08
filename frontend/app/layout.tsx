@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
 import "./globals.css";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { SiteHeader } from "@/components/SiteHeader";
 
 // Cairo carries real Arabic weights. Without an explicit Arabic face the
 // browser falls back to whatever it has, which on Windows is Tahoma and looks
@@ -78,15 +78,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         nobody can act on and buries real ones.
       */}
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        <SiteHeader />
         {children}
-        {/*
-          Floating rather than in a header, because the public pages have no
-          shared chrome to put it in. Bottom-start keeps it clear of the
-          Next dev indicator, which sits bottom-end.
-        */}
-        <div className="fixed bottom-4 start-4 z-50">
-          <ThemeToggle className="bg-background shadow-sm" />
-        </div>
       </body>
     </html>
   );

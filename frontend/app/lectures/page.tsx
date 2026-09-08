@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { getCatalog, getPublicSettings } from '@/lib/server-api';
+import { getCatalog } from '@/lib/server-api';
 import { GRADES, GRADE_LABELS_AR, type Grade } from '@/lib/grades';
 import { LectureCard } from '@/components/LectureCard';
 
@@ -21,20 +21,14 @@ export default async function LecturesPage({
   const { grade } = await searchParams;
   const activeGrade = GRADES.includes(grade as Grade) ? (grade as Grade) : undefined;
 
-  const [{ lectures, total }, settings] = await Promise.all([
-    getCatalog({ grade: activeGrade, limit: 60 }),
-    getPublicSettings(),
-  ]);
+  const { lectures, total } = await getCatalog({ grade: activeGrade, limit: 60 });
 
   return (
     <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-6 px-5 py-10">
-      <header className="flex flex-col gap-2">
-        <Link href="/" className="text-sm text-muted transition hover:text-foreground">
-          &#8594; {settings?.siteName ?? 'الرئيسية'}
-        </Link>
+      <div className="flex flex-col gap-2">
         <h1 className="text-3xl font-bold">المحاضرات</h1>
         <p className="text-sm text-muted">{total} محاضرة متاحة</p>
-      </header>
+      </div>
 
       <nav aria-label="تصفية حسب الصف" className="flex flex-wrap gap-2">
         <FilterPill href="/lectures" label="كل الصفوف" active={!activeGrade} />

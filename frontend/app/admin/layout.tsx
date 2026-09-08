@@ -23,7 +23,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
   return (
     <div className="flex min-h-full flex-1 flex-col">
-      <AdminNav teacherName={user.name} />
+      <AdminNav />
       <main className="mx-auto w-full max-w-6xl flex-1 px-5 py-8">{children}</main>
     </div>
   );
