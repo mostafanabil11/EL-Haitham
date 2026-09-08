@@ -1,0 +1,37 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# builds
+dist/
+build/
+.next/
+out/
+next-env.d.ts
+
+# env — never commit real credentials; .env.example files are tracked
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# logs
+*.log
+npm-debug.log*
+boot.log
+
+# test / coverage
+coverage/
+.nyc_output/
+
+# editors & OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# next / vercel
+.vercel
+*.tsbuildinfo

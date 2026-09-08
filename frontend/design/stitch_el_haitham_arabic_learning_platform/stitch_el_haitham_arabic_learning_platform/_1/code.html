@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>منصة الهيثم - لتعليم اللغة العربية | إنشاء حساب جديد</title>
+<!-- Google Fonts: IBM Plex Sans Arabic -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=Amiri:wght@700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-error": "#ffffff",
+            "tertiary-fixed-dim": "#8cd1e3",
+            "outline-variant": "#c6c6ce",
+            "on-error-container": "#93000a",
+            "surface-container": "#e5eeff",
+            "surface-container-low": "#eff4ff",
+            "error": "#ba1a1a",
+            "background": "#f8f9ff",
+            "on-primary-container": "#7e88a8",
+            "primary-fixed": "#dae1ff",
+            "on-surface-variant": "#45464d",
+            "on-tertiary-fixed": "#001f26",
+            "primary": "#000823",
+            "surface": "#f8f9ff",
+            "surface-tint": "#545e7c",
+            "on-secondary-container": "#765100",
+            "secondary-fixed": "#ffdeac",
+            "tertiary": "#000c10",
+            "secondary-fixed-dim": "#f4bd60",
+            "outline": "#76767e",
+            "tertiary-fixed": "#aaedff",
+            "surface-variant": "#d3e4fe",
+            "surface-dim": "#cbdbf5",
+            "inverse-surface": "#213145",
+            "error-container": "#ffdad6",
+            "surface-container-lowest": "#ffffff",
+            "on-primary-fixed-variant": "#3c4663",
+            "on-surface": "#0b1c30",
+            "on-tertiary": "#ffffff",
+            "on-secondary-fixed": "#281900",
+            "on-tertiary-fixed-variant": "#004e5c",
+            "tertiary-container": "#00252d",
+            "on-tertiary-container": "#4c92a3",
+            "primary-container": "#16203b",
+            "on-background": "#0b1c30",
+            "primary-fixed-dim": "#bcc5e9",
+            "surface-bright": "#f8f9ff",
+            "surface-container-highest": "#d3e4fe",
+            "on-primary-fixed": "#101a35",
+            "on-primary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#fec667",
+            "on-secondary-fixed-variant": "#604100",
+            "secondary": "#7e5700",
+            "surface-container-high": "#dce9ff",
+            "inverse-on-surface": "#eaf1ff",
+            "inverse-primary": "#bcc5e9"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xxl": "3rem",
+            "gutter-mobile": "1rem",
+            "space-sm": "0.75rem",
+            "space-xxs": "0.25rem",
+            "gutter-desktop": "2rem",
+            "space-xs": "0.5rem",
+            "container-max": "72rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "space-xl": "2rem",
+            "gutter-tablet": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-md": ["IBM Plex Sans Arabic", "IBM Plex Sans", "sans-serif"],
+            "caption": ["IBM Plex Sans Arabic", "IBM Plex Sans", "sans-serif"],
+            "body-lg": ["IBM Plex Sans Arabic", "IBM Plex Sans", "sans-serif"],
+            "body-sm": ["IBM Plex Sans Arabic", "IBM Plex Sans", "sans-serif"],
+            "headline-sm": ["IBM Plex Sans Arabic", "IBM Plex Sans", "sans-serif"],
+            "display-hero-mobile": ["IBM Plex Sans Arabic", "IBM Plex Sans", "sans-serif"],
+            "headline-lg": ["IBM Plex Sans Arabic", "IBM Plex Sans", "sans-serif"],
+            "headline-lg-mobile": ["IBM Plex Sans Arabic", "IBM Plex Sans", "sans-serif"],
+            "display-hero": ["IBM Plex Sans Arabic", "IBM Plex Sans", "sans-serif"],
+            "label-md": ["IBM Plex Sans Arabic", "IBM Plex Sans", "sans-serif"],
+            "body-md": ["IBM Plex Sans Arabic", "IBM Plex Sans", "sans-serif"],
+            "label-sm": ["IBM Plex Sans Arabic", "IBM Plex Sans", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-md": ["22px", { "lineHeight": "32px", "letterSpacing": "0px", "fontWeight": "600" }],
+            "caption": ["11px", { "lineHeight": "16px", "letterSpacing": "0px", "fontWeight": "500" }],
+            "body-lg": ["17px", { "lineHeight": "28px", "letterSpacing": "0px", "fontWeight": "400" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "letterSpacing": "0px", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "28px", "letterSpacing": "0px", "fontWeight": "600" }],
+            "display-hero-mobile": ["28px", { "lineHeight": "40px", "letterSpacing": "0px", "fontWeight": "700" }],
+            "headline-lg": ["30px", { "lineHeight": "44px", "letterSpacing": "0px", "fontWeight": "700" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "34px", "letterSpacing": "0px", "fontWeight": "700" }],
+            "display-hero": ["40px", { "lineHeight": "56px", "letterSpacing": "0px", "fontWeight": "700" }],
+            "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0px", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "24px", "letterSpacing": "0px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.2px", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+    }
+    .calligraphy-title {
+      font-family: 'Amiri', serif;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen antialiased flex flex-col items-center justify-start pb-space-xxl selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Mobile Viewport Container capped for focused academic intent -->
+<div class="w-full max-w-md bg-background min-h-screen flex flex-col relative">
+<!-- Top Scholar Header Strip -->
+<header class="px-gutter-mobile pt-space-lg pb-space-md flex flex-col items-center text-center relative overflow-hidden">
+<!-- Decorative Neo-Calligraphic Emblem & Brand Accent -->
+<div class="w-16 h-16 rounded-xl bg-primary-container text-secondary-container flex items-center justify-center shadow-md mb-space-sm border border-outline-variant/30 relative">
+<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<div class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-secondary border-2 border-surface-container-lowest flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-surface-container-lowest">star</span>
+</div>
+</div>
+<h1 class="calligraphy-title text-[28px] leading-tight font-bold text-primary tracking-tight">
+        منصة الهيثم
+      </h1>
+<span class="text-label-sm font-label-sm text-secondary tracking-wide mt-space-xxs">
+        في اللغة العربية وآدابها
+      </span>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-space-xs max-w-xs">
+        رحلتك نحو التميز والتفوق في لغة الضاد
+      </p>
+<!-- Scholarly Badge Quote Tag -->
+<div class="mt-space-sm inline-flex items-center gap-space-xs px-space-sm py-space-xxs bg-surface-container-low rounded-full border border-outline-variant/40 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-secondary">verified</span>
+<span class="text-caption font-caption">تحت إشراف نخبة من موجهي الثانوية العامة</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-gutter-mobile flex flex-col">
+<!-- Authentication Mode Segmented Control -->
+<div class="bg-surface-container-low p-1 rounded-xl flex items-center mb-space-lg border border-outline-variant/30">
+<button class="flex-1 py-space-xs rounded-lg text-center text-label-md font-label-md transition-all duration-200 text-on-surface-variant hover:text-primary" type="button">
+          تسجيل دخول
+        </button>
+<button class="flex-1 py-space-xs rounded-lg text-center text-label-md font-label-md transition-all duration-200 bg-surface-container-lowest text-primary shadow-sm font-bold border border-outline-variant/20" type="button">
+          إنشاء حساب جديد
+        </button>
+</div>
+<!-- Registration Form Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border border-outline-variant/30 flex flex-col gap-space-md">
+<div class="flex items-center justify-between border-b border-surface-container-high pb-space-xs mb-space-xxs">
+<span class="text-headline-sm font-headline-sm text-primary">بيانات الطالب</span>
+<span class="text-caption font-caption text-secondary flex items-center gap-1 bg-secondary-fixed/30 px-space-xs py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">school</span>
+            عام دراسي 2024 / 2025
+          </span>
+</div>
+<!-- 1. Full Name -->
+<div class="flex flex-col gap-space-xxs">
+<label class="text-label-md font-label-md text-on-surface flex items-center justify-between" for="student-name">
+<span>الاسم ثلاثي</span>
+<span class="text-caption font-caption text-on-surface-variant">كما مدون بالأوراق الرسمية</span>
+</label>
+<div class="relative flex items-center">
+<input class="w-full h-12 pr-10 pl-4 bg-surface-container-lowest border border-outline-variant rounded-xl text-body-md font-body-md text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary-container/20 transition-colors duration-150" id="student-name" placeholder="أحمد محمد علي" type="text"/>
+<div class="absolute right-3 pointer-events-none text-on-surface-variant flex items-center">
+<span class="material-symbols-outlined text-[20px]">person</span>
+</div>
+</div>
+</div>
+<!-- 2. Student Phone Number -->
+<div class="flex flex-col gap-space-xxs">
+<label class="text-label-md font-label-md text-on-surface" for="student-phone">
+            رقم هاتف الطالب (المسجل على الواتساب)
+          </label>
+<div class="relative flex items-center">
+<input class="w-full h-12 pr-4 pl-10 bg-surface-container-lowest border border-outline-variant rounded-xl text-body-md font-body-md text-on-surface placeholder:text-outline text-right focus:border-primary focus:ring-2 focus:ring-primary-container/20 transition-colors duration-150" dir="ltr" id="student-phone" placeholder="01xxxxxxxxx" type="tel"/>
+<div class="absolute left-3 pointer-events-none text-on-surface-variant flex items-center">
+<span class="material-symbols-outlined text-[20px]">smartphone</span>
+</div>
+</div>
+</div>
+<!-- 3. Guardian Phone Number -->
+<div class="flex flex-col gap-space-xxs">
+<label class="text-label-md font-label-md text-on-surface flex items-center justify-between" for="guardian-phone">
+<span>رقم هاتف ولي الأمر</span>
+<span class="text-caption font-caption text-secondary font-medium">مهم لمتابعة الدرجات والغياب</span>
+</label>
+<div class="relative flex items-center">
+<input class="w-full h-12 pr-4 pl-10 bg-surface-container-lowest border border-outline-variant rounded-xl text-body-md font-body-md text-on-surface placeholder:text-outline text-right focus:border-primary focus:ring-2 focus:ring-primary-container/20 transition-colors duration-150" dir="ltr" id="guardian-phone" placeholder="01xxxxxxxxx" type="tel"/>
+<div class="absolute left-3 pointer-events-none text-on-surface-variant flex items-center">
+<span class="material-symbols-outlined text-[20px]">contact_phone</span>
+</div>
+</div>
+</div>
+<!-- 4. Password -->
+<div class="flex flex-col gap-space-xxs">
+<label class="text-label-md font-label-md text-on-surface" for="password-input">
+            كلمة المرور
+          </label>
+<div class="relative flex items-center">
+<input class="w-full h-12 pr-10 pl-11 bg-surface-container-lowest border border-outline-variant rounded-xl text-body-md font-body-md text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary-container/20 transition-colors duration-150" id="password-input" placeholder="أدخل 8 أحرف وأرقام على الأقل" type="password"/>
+<div class="absolute right-3 pointer-events-none text-on-surface-variant flex items-center">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<button aria-label="إظهار كلمة المرور" class="absolute left-3 text-on-surface-variant hover:text-primary transition-colors p-1" id="toggle-password-btn" onclick="togglePasswordVisibility()" type="button">
+<span class="material-symbols-outlined text-[20px]" id="password-eye-icon">visibility</span>
+</button>
+</div>
+</div>
+<!-- 5. Academic Year / Grade Selector -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<div class="flex items-center justify-between">
+<label class="text-label-md font-label-md text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[18px]">auto_stories</span>
+              اختيار المرحلة الدراسية
+            </label>
+<span class="text-caption font-caption text-on-surface-variant">مرحلة الثانوية العامة</span>
+</div>
+<div aria-label="المرحلة الدراسية" class="grid grid-cols-1 gap-2.5" role="radiogroup">
+<!-- Secondary 1st Year -->
+<label class="relative flex items-center justify-between p-space-sm rounded-xl border border-outline-variant/40 bg-surface cursor-pointer hover:border-outline transition-all duration-150">
+<div class="flex items-center gap-space-sm">
+<input class="w-4 h-4 text-primary-container border-outline-variant focus:ring-primary-container" name="academic-level" type="radio" value="1st_sec"/>
+<div class="flex flex-col">
+<span class="text-label-md font-label-md text-primary">الصف الأول الثانوي</span>
+<span class="text-caption font-caption text-on-surface-variant">التأسيس البلاغي والنحوي الشامل</span>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded-lg text-caption font-caption bg-surface-container text-on-surface-variant border border-outline-variant/30">1 ثانوي</span>
+</label>
+<!-- Secondary 2nd Year -->
+<label class="relative flex items-center justify-between p-space-sm rounded-xl border border-outline-variant/40 bg-surface cursor-pointer hover:border-outline transition-all duration-150">
+<div class="flex items-center gap-space-sm">
+<input class="w-4 h-4 text-primary-container border-outline-variant focus:ring-primary-container" name="academic-level" type="radio" value="2nd_sec"/>
+<div class="flex flex-col">
+<span class="text-label-md font-label-md text-primary">الصف الثاني الثانوي</span>
+<span class="text-caption font-caption text-on-surface-variant">إتقان نصوص الأدب وقواعد الإعراب</span>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded-lg text-caption font-caption bg-surface-container text-on-surface-variant border border-outline-variant/30">2 ثانوي</span>
+</label>
+<!-- Secondary 3rd Year (Highlighted Thanaweya Amma Badge) -->
+<label class="relative flex items-center justify-between p-space-sm rounded-xl border-2 border-secondary bg-secondary-fixed/15 cursor-pointer shadow-sm transition-all duration-150">
+<div class="flex items-center gap-space-sm">
+<input checked="" class="w-4 h-4 text-secondary border-secondary focus:ring-secondary" name="academic-level" type="radio" value="3rd_sec"/>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="text-label-md font-label-md text-primary font-bold">الصف الثالث الثانوي</span>
+<span class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-secondary text-surface-container-lowest text-caption font-caption">
+<span class="material-symbols-outlined text-[10px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                      الثانوية العامة
+                    </span>
+</div>
+<span class="text-caption font-caption text-on-surface-variant">المنهج الكامل، بنك الأسئلة والمراجعات الوزارية</span>
+</div>
+</div>
+<div class="w-6 h-6 rounded-full bg-secondary/15 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+</div>
+</label>
+</div>
+</div>
+<!-- 6. Governorate Dropdown -->
+<div class="flex flex-col gap-space-xxs">
+<label class="text-label-md font-label-md text-on-surface" for="governorate-select">
+            اختيار المحافظة
+          </label>
+<div class="relative flex items-center">
+<select class="w-full h-12 pr-10 pl-10 bg-surface-container-lowest border border-outline-variant rounded-xl text-body-md font-body-md text-on-surface focus:border-primary focus:ring-2 focus:ring-primary-container/20 appearance-none transition-colors duration-150" id="governorate-select">
+<option disabled="" selected="" value="">اختر محافظتك لتحديد جدول الامتحانات والمجاميع</option>
+<option value="cairo">القاهرة</option>
+<option value="giza">الجيزة</option>
+<option value="alexandria">الإسكندرية</option>
+<option value="dakahlia">الدقهلية</option>
+<option value="sharqia">الشرقية</option>
+<option value="gharbia">الغربية</option>
+<option value="monufia">المنوفية</option>
+<option value="qalyubia">القليوبية</option>
+<option value="beheira">البحيرة</option>
+<option value="assiut">أسيوط</option>
+<option value="sohag">سوهاج</option>
+<option value="qena">قنا</option>
+<option value="other">محافظة أخرى</option>
+</select>
+<div class="absolute right-3 pointer-events-none text-on-surface-variant flex items-center">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+</div>
+<div class="absolute left-3 pointer-events-none text-on-surface-variant flex items-center">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Terms and Conditions Checkbox -->
+<div class="flex items-start gap-space-xs pt-space-xs">
+<div class="flex items-center h-5">
+<input checked="" class="w-4 h-4 rounded text-primary-container border-outline-variant focus:ring-primary-container" id="terms" type="checkbox"/>
+</div>
+<label class="text-body-sm font-body-sm text-on-surface-variant select-none" for="terms">
+            أوافق على 
+            <a class="text-primary font-bold underline hover:text-secondary transition-colors" href="#">شروط الاستخدام</a> 
+            وسياسة خصوصية منصة الهيثم التعليمية.
+          </label>
+</div>
+<!-- Prominent Primary Action Button -->
+<button class="w-full min-h-[48px] py-space-sm px-space-md rounded-xl bg-primary-container text-surface-container-lowest font-headline-sm text-headline-sm flex items-center justify-center gap-space-xs shadow-md hover:bg-primary active:scale-[0.98] transition-all duration-150 mt-space-xs" type="button">
+<span>إنشاء الحساب والبدء الآن</span>
+<span class="material-symbols-outlined text-[20px] transform scale-x-[-1]">arrow_forward</span>
+</button>
+</div>
+<!-- Quick Guidance / Pedagogical Rule Box -->
+<div class="mt-space-md p-space-sm rounded-xl bg-surface-container-low border-r-4 border-secondary flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5">lightbulb</span>
+<div class="text-caption font-caption text-on-surface-variant leading-relaxed">
+<strong class="text-primary font-bold">تنبيه لطلابنا الأعزاء:</strong> تأكد من تسجيل رقم هاتف ولي الأمر الصحيح؛ حيث تصل إليه نتائج الاختبارات الأسبوعية والواجبات الدورية مباشرة أولاً بأول.
+        </div>
+</div>
+<!-- Secondary Links & Login Alternate -->
+<div class="mt-space-lg flex flex-col items-center gap-space-sm text-center">
+<p class="text-body-md font-body-md text-on-surface-variant">
+          لديك حساب بالفعل؟ 
+          <a class="text-secondary font-bold hover:underline" href="#">
+            تسجيل الدخول
+          </a>
+</p>
+<!-- Technical & Academic Student Support Link -->
+<a class="inline-flex items-center gap-2 px-space-md py-2.5 rounded-xl border border-outline-variant/40 bg-surface-container-lowest text-on-surface-variant hover:border-secondary hover:text-primary transition-all duration-150 text-label-md font-label-md shadow-sm" href="https://wa.me/" target="_blank">
+<span class="material-symbols-outlined text-[18px] text-[#25D366]">chat</span>
+<span>تواجه مشكلة في التسجيل؟ تواصل مع الدعم الفني</span>
+</a>
+</div>
+<!-- Bottom Spacer for mobile aesthetics -->
+<div class="h-space-xl"></div>
+</main>
+<!-- Academic Copyright Stamp -->
+<footer class="py-space-md text-center text-caption font-caption text-on-surface-variant border-t border-surface-container-high">
+      منصة الهيثم في اللغة العربية © 2025 • جميع الحقوق محفوظة
+    </footer>
+</div>
+<!-- Interactive script for Password Toggle -->
+<script>
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById('password-input');
+      const eyeIcon = document.getElementById('password-eye-icon');
+      if (!passwordInput || !eyeIcon) return;
+
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.textContent = 'visibility_off';
+      } else {
+        passwordInput.type = 'password';
+        eyeIcon.textContent = 'visibility';
+      }
+    }
+  </script>
+</body></html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-background" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>منصة الهيثم - مشغل المحاضرة التفاعلية</title>
+<!-- Google Fonts: IBM Plex Sans Arabic -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-error": "#ffffff",
+            "tertiary-fixed-dim": "#8cd1e3",
+            "outline-variant": "#c6c6ce",
+            "on-error-container": "#93000a",
+            "surface-container": "#e5eeff",
+            "surface-container-low": "#eff4ff",
+            "error": "#ba1a1a",
+            "background": "#f8f9ff",
+            "on-primary-container": "#7e88a8",
+            "primary-fixed": "#dae1ff",
+            "on-surface-variant": "#45464d",
+            "on-tertiary-fixed": "#001f26",
+            "primary": "#000823",
+            "surface": "#f8f9ff",
+            "surface-tint": "#545e7c",
+            "on-secondary-container": "#765100",
+            "secondary-fixed": "#ffdeac",
+            "tertiary": "#000c10",
+            "secondary-fixed-dim": "#f4bd60",
+            "outline": "#76767e",
+            "tertiary-fixed": "#aaedff",
+            "surface-variant": "#d3e4fe",
+            "surface-dim": "#cbdbf5",
+            "inverse-surface": "#213145",
+            "error-container": "#ffdad6",
+            "surface-container-lowest": "#ffffff",
+            "on-primary-fixed-variant": "#3c4663",
+            "on-surface": "#0b1c30",
+            "on-tertiary": "#ffffff",
+            "on-secondary-fixed": "#281900",
+            "on-tertiary-fixed-variant": "#004e5c",
+            "tertiary-container": "#00252d",
+            "on-tertiary-container": "#4c92a3",
+            "primary-container": "#16203b",
+            "on-background": "#0b1c30",
+            "primary-fixed-dim": "#bcc5e9",
+            "surface-bright": "#f8f9ff",
+            "surface-container-highest": "#d3e4fe",
+            "on-primary-fixed": "#101a35",
+            "on-primary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#fec667",
+            "on-secondary-fixed-variant": "#604100",
+            "secondary": "#7e5700",
+            "surface-container-high": "#dce9ff",
+            "inverse-on-surface": "#eaf1ff",
+            "inverse-primary": "#bcc5e9"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xxl": "3rem",
+            "gutter-mobile": "1rem",
+            "space-sm": "0.75rem",
+            "space-xxs": "0.25rem",
+            "gutter-desktop": "2rem",
+            "space-xs": "0.5rem",
+            "container-max": "72rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "space-xl": "2rem",
+            "gutter-tablet": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-md": ["IBM Plex Sans Arabic", "sans-serif"],
+            "caption": ["IBM Plex Sans Arabic", "sans-serif"],
+            "body-lg": ["IBM Plex Sans Arabic", "sans-serif"],
+            "body-sm": ["IBM Plex Sans Arabic", "sans-serif"],
+            "headline-sm": ["IBM Plex Sans Arabic", "sans-serif"],
+            "display-hero-mobile": ["IBM Plex Sans Arabic", "sans-serif"],
+            "headline-lg": ["IBM Plex Sans Arabic", "sans-serif"],
+            "headline-lg-mobile": ["IBM Plex Sans Arabic", "sans-serif"],
+            "display-hero": ["IBM Plex Sans Arabic", "sans-serif"],
+            "label-md": ["IBM Plex Sans Arabic", "sans-serif"],
+            "body-md": ["IBM Plex Sans Arabic", "sans-serif"],
+            "label-sm": ["IBM Plex Sans Arabic", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-md": ["22px", { "lineHeight": "32px", "letterSpacing": "0px", "fontWeight": "600" }],
+            "caption": ["11px", { "lineHeight": "16px", "letterSpacing": "0px", "fontWeight": "500" }],
+            "body-lg": ["17px", { "lineHeight": "28px", "letterSpacing": "0px", "fontWeight": "400" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "letterSpacing": "0px", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "28px", "letterSpacing": "0px", "fontWeight": "600" }],
+            "display-hero-mobile": ["28px", { "lineHeight": "40px", "letterSpacing": "0px", "fontWeight": "700" }],
+            "headline-lg": ["30px", { "lineHeight": "44px", "letterSpacing": "0px", "fontWeight": "700" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "34px", "letterSpacing": "0px", "fontWeight": "700" }],
+            "display-hero": ["40px", { "lineHeight": "56px", "letterSpacing": "0px", "fontWeight": "700" }],
+            "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0px", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "24px", "letterSpacing": "0px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.2px", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col justify-between selection:bg-secondary-fixed selection:text-on-secondary-fixed antialiased">
+<!-- Main Mobile Container (Centered on desktop, fluid on phone) -->
+<div class="w-full max-w-md mx-auto min-h-screen flex flex-col bg-surface-bright pb-24 relative shadow-sm">
+<!-- Top Focus Bar / Lecture Navigation Header -->
+<header class="sticky top-0 z-40 bg-surface-container-lowest/95 backdrop-blur-md px-gutter-mobile py-space-sm flex items-center justify-between border-b border-outline-variant/30">
+<div class="flex items-center gap-space-xs">
+<a aria-label="العودة للمقرر" class="p-space-xs -mr-space-xs rounded-xl hover:bg-surface-container-low transition-colors text-primary flex items-center gap-1 font-label-md text-label-md" href="#back">
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+<span class="font-headline-sm text-headline-sm">العودة للمقرر</span>
+</a>
+</div>
+<!-- Secondary 3rd Year Academic Pill Badge -->
+<div class="inline-flex items-center gap-1 bg-secondary-fixed/40 border border-secondary/30 px-2.5 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-secondary text-[14px]" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="text-secondary font-caption text-caption font-bold">الصف الثالث الثانوي</span>
+</div>
+</header>
+<!-- Lecture Title Strip -->
+<section class="px-gutter-mobile pt-space-sm pb-space-xs bg-surface-container-lowest">
+<div class="flex items-start justify-between gap-2">
+<div class="flex-1">
+<span class="text-secondary font-label-sm text-label-sm block mb-0.5 font-bold">الوحدة الثالثة: القواعد النحوية</span>
+<h1 class="font-headline-sm text-headline-sm text-primary font-bold leading-tight">المحاضرة 14: أسلوب الاستثناء وفنون الإعراب</h1>
+</div>
+<button class="p-2 rounded-xl text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors" title="حفظ للرجوع لاحقاً">
+<span class="material-symbols-outlined text-[22px]" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+</section>
+<!-- High-Fidelity Video Player Container -->
+<section class="relative w-full bg-primary-container overflow-hidden aspect-[16/9] select-none shadow-md group">
+<!-- Lecture Slide Visual Backdrop -->
+<div class="absolute inset-0 bg-cover bg-center opacity-70 scale-105 transition-transform duration-700" data-alt="An elegant high-definition academic presentation slide for an advanced Arabic grammar lecture with elegant golden thuluth calligraphy, subtle navy background geometry, crisp scholarly diagrams, modern pedagogy charts, and warm atmospheric studio lighting tailored for high school students." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCCzCBzBbkeciduXTXR5J9FSOEBUc6-7Gsu0uT0u2yOkyF4hciTnYDDizZFzQWUFNg1UJ_v_a1nJEuscQgA7AvFhbI9HblmcxedK2PQ_zCmg2BAFu3U7jV-9nqVNyq6v2t090RTvVPjwYBJD8vY0VMjtF5jifh3nsq_8k4Yq1flBE8TZ6V55qDUdG-R9L7jTegAyvdoLaceVTAWp_y9HtiZ-AnO6zcjT3ybn0hHy1bLDzratH2UrpfA')">
+</div>
+<!-- Subtle Indigo Gradient Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent"></div>
+<!-- Platform Watermark -->
+<div class="absolute top-3 right-3 z-10 flex items-center gap-1.5 px-2 py-1 rounded-md bg-primary-container/80 backdrop-blur-sm border border-outline-variant/30">
+<span class="material-symbols-outlined text-secondary-fixed text-[16px]" data-icon="school" style="font-variation-settings: 'FILL' 1;">school</span>
+<span class="text-surface-container-lowest font-caption text-caption font-bold tracking-tight">منصة الهيثم</span>
+</div>
+<!-- Teacher's Note Floating Overlay Badge -->
+<div class="absolute top-3 left-3 z-10 max-w-[65%]">
+<div class="flex items-center gap-1.5 bg-secondary/95 backdrop-blur-sm text-surface-container-lowest px-2.5 py-1 rounded-lg shadow-sm border border-secondary-fixed/40 animate-pulse">
+<span class="material-symbols-outlined text-[15px]" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+<span class="font-caption text-caption truncate">نقطة هامة: حالات المستثنى بـ (إلا)</span>
+</div>
+</div>
+<!-- Center Play / Pause Indicator -->
+<div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+<button class="w-14 h-14 rounded-full bg-secondary-container/90 text-primary flex items-center justify-center shadow-lg transform transition-transform active:scale-95 group-hover:scale-105 pointer-events-auto">
+<span class="material-symbols-outlined text-[36px]" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<!-- Video Control Bar Overlay (Bottom) -->
+<div class="absolute bottom-0 inset-x-0 z-20 px-3 py-2.5 bg-gradient-to-t from-primary/95 via-primary/75 to-transparent text-surface-container-lowest">
+<!-- Interactive Scrubber Progress Bar -->
+<div class="relative w-full h-1.5 bg-outline-variant/40 rounded-full mb-2 cursor-pointer group/scrub flex items-center">
+<div class="h-full bg-secondary-container rounded-full relative" style="width: 41%;">
+<span class="absolute -left-1.5 -top-1 w-3.5 h-3.5 bg-surface-container-lowest rounded-full shadow border-2 border-secondary scale-0 group-hover/scrub:scale-100 transition-transform"></span>
+</div>
+</div>
+<!-- Meta Controls Row -->
+<div class="flex items-center justify-between font-caption text-caption">
+<!-- Timestamps & Play Control -->
+<div class="flex items-center gap-2">
+<button class="hover:text-secondary-fixed transition-colors" title="تشغيل / إيقاف">
+<span class="material-symbols-outlined text-[20px]" data-icon="pause" style="font-variation-settings: 'FILL' 1;">pause</span>
+</button>
+<span class="font-mono text-surface-container-lowest font-medium tracking-tight">32:15 / 1:18:40</span>
+</div>
+<!-- Speed, Resolution & Fullscreen Toggles -->
+<div class="flex items-center gap-2">
+<!-- Speed Button (Cycle through 1x, 1.25x, 1.5x) -->
+<button class="px-2 py-0.5 rounded bg-surface-container-lowest/15 hover:bg-surface-container-lowest/25 transition-colors font-bold font-mono text-[11px] border border-outline-variant/30">
+              1.25x
+            </button>
+<!-- Quality Badge -->
+<button class="px-1.5 py-0.5 rounded bg-surface-container-lowest/15 hover:bg-surface-container-lowest/25 transition-colors font-mono text-[10px] text-surface-container-lowest font-semibold">
+              1080p
+            </button>
+<!-- Fullscreen -->
+<button class="hover:text-secondary-fixed transition-colors p-0.5" title="ملء الشاشة">
+<span class="material-symbols-outlined text-[20px]" data-icon="fullscreen">fullscreen</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Session Navigation Tabs Bar -->
+<nav class="bg-surface-container-lowest sticky top-16 z-30 border-b border-outline-variant/30 overflow-x-auto no-scrollbar shadow-xs">
+<div class="flex items-center px-gutter-mobile gap-6 min-w-max">
+<!-- Active Tab: Session Details -->
+<button class="py-3 font-label-md text-label-md text-primary font-bold border-b-2 border-secondary flex items-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[18px] text-secondary" data-icon="menu_book" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span>محتوى الحصة</span>
+</button>
+<!-- PDF & Attachments -->
+<button class="py-3 font-label-md text-label-md text-on-surface-variant hover:text-primary border-b-2 border-transparent flex items-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="attach_file">attach_file</span>
+<span>الملزمة والمرفقات (PDF)</span>
+<span class="bg-surface-container-high text-primary font-caption text-[10px] px-1.5 py-0.2 rounded-full">1</span>
+</button>
+<!-- Homework & Exam -->
+<button class="py-3 font-label-md text-label-md text-on-surface-variant hover:text-primary border-b-2 border-transparent flex items-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="assignment">assignment</span>
+<span>الواجب والامتحان</span>
+</button>
+<!-- Q&A Discussions -->
+<button class="py-3 font-label-md text-label-md text-on-surface-variant hover:text-primary border-b-2 border-transparent flex items-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="forum">forum</span>
+<span>أسئلة الطلاب ومناقشات</span>
+</button>
+</div>
+</nav>
+<!-- Scrollable Active Content View -->
+<main class="flex-1 p-gutter-mobile space-y-space-md">
+<!-- Mandatory Homework Alert Callout -->
+<div class="p-space-md rounded-xl bg-error-container/30 border border-error/20 flex items-start gap-3">
+<span class="material-symbols-outlined text-error text-[22px] shrink-0 mt-0.5" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
+<div class="flex-1">
+<h2 class="font-headline-sm text-headline-sm text-on-error-container font-bold mb-0.5">شرط اجتياز المحاضرة</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            يجب حل واجب الحصة (20 سؤال) قبل فتح المحاضرة القادمة - <span class="text-error font-bold">المتبقي: يومان</span>
+</p>
+</div>
+</div>
+<!-- Quick Download Resource Card (Bento Item) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md border border-outline-variant/40 shadow-sm flex items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary shrink-0 border border-surface-variant">
+<span class="material-symbols-outlined text-[26px] text-error" data-icon="picture_as_pdf" style="font-variation-settings: 'FILL' 1;">picture_as_pdf</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-primary font-bold truncate max-w-[190px]">ملزمة الشرح والتدريبات (محاضرة 14).pdf</h3>
+<p class="font-caption text-caption text-on-surface-variant mt-0.5">الحجم: 4.2 MB • صيغة PDF تفاعلي</p>
+</div>
+</div>
+<button class="px-3 py-2 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-primary border border-outline-variant/40 flex items-center gap-1 font-label-sm text-label-sm font-bold transition-all active:scale-95 shrink-0" title="تحميل الملف الآن">
+<span class="material-symbols-outlined text-[18px]" data-icon="download">download</span>
+<span>تحميل</span>
+</button>
+</div>
+<!-- Lesson Outline & Progression Timeline -->
+<section class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-primary font-bold">عناصر ومحاور المحاضرة</h2>
+<span class="font-caption text-caption text-secondary font-bold">مكتمل 45%</span>
+</div>
+<!-- Progression Timeline Stack -->
+<div class="space-y-2.5">
+<!-- Item 1: Completed -->
+<div class="p-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-between shadow-xs">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded-full bg-secondary-fixed/50 text-secondary flex items-center justify-center font-bold text-xs shrink-0">
+<span class="material-symbols-outlined text-[18px]" data-icon="check">check</span>
+</span>
+<div>
+<h4 class="font-body-md text-body-md text-on-surface font-medium">1. مقدمة وإعراب المستثنى تام مثبت</h4>
+<span class="font-caption text-caption text-on-surface-variant">المدة: 18 دقيقة</span>
+</div>
+</div>
+<span class="font-caption text-caption text-secondary bg-secondary-fixed/30 px-2 py-0.5 rounded-md font-bold">تم الإنجاز</span>
+</div>
+<!-- Item 2: Currently Playing -->
+<div class="p-3.5 rounded-xl bg-primary-container text-surface-container-lowest border border-primary shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded-full bg-secondary-container text-primary flex items-center justify-center font-bold text-xs shrink-0 animate-spin">
+<span class="material-symbols-outlined text-[18px]" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</span>
+<div>
+<h4 class="font-body-md text-body-md font-bold text-surface-container-lowest">2. المستثنى تام منفي</h4>
+<span class="font-caption text-caption text-on-primary-container">المدة: 22 دقيقة • الدقيقة الحالية 14:15</span>
+</div>
+</div>
+<span class="font-caption text-caption text-primary bg-secondary-container px-2 py-0.5 rounded-md font-bold">قيد المشاهدة</span>
+</div>
+<!-- Item 3: Upcoming -->
+<div class="p-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-between opacity-80">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-mono text-xs font-bold shrink-0">
+                3
+              </span>
+<div>
+<h4 class="font-body-md text-body-md text-on-surface">3. المستثنى ناقص منفي وحسب موقعه</h4>
+<span class="font-caption text-caption text-on-surface-variant">المدة: 20 دقيقة</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px]" data-icon="lock">lock</span>
+</div>
+<!-- Item 4: Upcoming -->
+<div class="p-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-between opacity-80">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-mono text-xs font-bold shrink-0">
+                4
+              </span>
+<div>
+<h4 class="font-body-md text-body-md text-on-surface">4. غير وسوى وحكمهما مع إعراب ما بعدهما</h4>
+<span class="font-caption text-caption text-on-surface-variant">المدة: 24 دقيقة</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px]" data-icon="lock">lock</span>
+</div>
+</div>
+</section>
+<!-- Pedagogical Reference Callout (Neo-Calligraphic Structuralism) -->
+<section class="p-space-md rounded-xl bg-surface-container-lowest border-r-4 border-r-secondary border border-outline-variant/40 space-y-1.5">
+<div class="flex items-center gap-1.5 text-secondary font-headline-sm text-headline-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="menu_book">menu_book</span>
+<span>شاهد نحوي مقرر</span>
+</div>
+<p class="font-body-md text-body-md text-primary font-medium leading-relaxed">
+          «ما فَعَلُوهُ إِلَّا قَلِيلٌ مِّنْهُمْ»
+        </p>
+<p class="font-caption text-caption text-on-surface-variant">
+          إعراب كلمة (قليل): بدل مرفوع بالضمة الظاهرة لأن الكلام تام منفي.
+        </p>
+</section>
+</main>
+<!-- Contextual Action Footer Bar (Docked Immersion Panel) -->
+<footer class="sticky bottom-0 z-40 bg-surface-container-lowest/95 backdrop-blur-md px-gutter-mobile py-space-sm border-t border-outline-variant/30 flex flex-col gap-2">
+<!-- Primary Quiz Launch Action -->
+<button class="w-full min-h-[48px] rounded-xl bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md font-bold flex items-center justify-center gap-2 shadow-md active:scale-98 transition-all">
+<span class="material-symbols-outlined text-[20px] text-secondary-container" data-icon="quiz" style="font-variation-settings: 'FILL' 1;">quiz</span>
+<span>بدء امتحان الحصة والتقييم الفوري</span>
+</button>
+<!-- Secondary Mentor Query Action -->
+<div class="flex items-center gap-2">
+<button class="flex-1 min-h-[42px] rounded-xl border border-primary/30 text-primary hover:bg-surface-container-low font-label-sm text-label-sm font-bold flex items-center justify-center gap-1.5 transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="contact_support">contact_support</span>
+<span>طرح سؤال على الأستاذ</span>
+</button>
+<button class="w-12 h-[42px] rounded-xl border border-outline-variant/40 text-on-surface-variant hover:bg-surface-container-low flex items-center justify-center transition-colors" title="مشاركة الحصة">
+<span class="material-symbols-outlined text-[20px]" data-icon="share">share</span>
+</button>
+</div>
+</footer>
+</div>
+</body></html>

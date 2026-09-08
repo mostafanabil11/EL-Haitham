@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+/*
+ * Tailwind's `dark:` variant defaults to `prefers-color-scheme` alone, which
+ * would disagree with the switcher: pick light on a dark-mode phone and the
+ * page turns light while every `dark:` utility stays dark, so the "تم الحفظ"
+ * text and the status pills end up mistinted against their new background.
+ *
+ * Redefining the variant with the same two-way rule the tokens use keeps them
+ * in step — an explicit choice wins, and the OS decides only when there is no
+ * choice to honour.
+ */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme="light"]), :root:not([data-theme="light"]) *) {
+      @slot;
+    }
+  }
+}
+
+/*
+ * Light is the base. Every colour the app uses is defined here and nowhere
+ * else, so a token can never exist only inside a media query — which is the
+ * usual way a theme ends up with an unreadable control in one mode.
+ */
+:root {
+  --background: #ffffff;
+  --foreground: #14161a;
+  --muted: #5b6472;
+  --border: #e3e7ec;
+  --brand: #1f6feb;
+  --brand-contrast: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-brand: var(--brand);
+  --color-brand-contrast: var(--brand-contrast);
+  --font-sans: var(--font-cairo);
+}
+
+/*
+ * The dark palette, defined once and applied from two directions:
+ *
+ *   1. the OS preference, but only while the reader has NOT explicitly asked
+ *      for light — without that guard, choosing light on a dark-mode phone
+ *      does nothing, because the media query keeps winning;
+ *   2. an explicit choice, which must beat the OS in both directions.
+ *
+ * `data-theme` is stamped on <html> by the inline script in the layout before
+ * first paint, so there is no flash of the wrong palette on load.
+ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: #0d0f13;
+    --foreground: #eef1f5;
+    --muted: #9aa4b2;
+    --border: #232830;
+    --brand: #4c8dff;
+  }
+}
+
+:root[data-theme="dark"] {
+  --background: #0d0f13;
+  --foreground: #eef1f5;
+  --muted: #9aa4b2;
+  --border: #232830;
+  --brand: #4c8dff;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-cairo), system-ui, sans-serif;
+}
+
+/*
+ * Tells the browser which way its own chrome should go — form controls, the
+ * scrollbar, and the default canvas behind the page. Without it a light page
+ * on a dark-mode OS still gets a dark scrollbar and dark <select> popups.
+ */
+:root {
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/*
+ * Use logical properties throughout this project — `ps-*`/`pe-*`/`ms-*`/`me-*`
+ * and `text-start`/`text-end`, never `pl-*`/`pr-*`/`text-left`/`text-right`.
+ * Tailwind resolves them against `dir`, so the layout stays correct if an
+ * English or LTR view is ever added, and it stops the mirrored-padding bugs
+ * that RTL sites collect otherwise.
+ */
