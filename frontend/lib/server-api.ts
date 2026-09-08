@@ -119,3 +119,18 @@ export type LearnLecture = {
 export async function getLearnLecture(slug: string): Promise<LearnLecture | null> {
   return serverFetch<LearnLecture>(`/learn/lectures/${encodeURIComponent(slug)}`);
 }
+
+export type StudentAnnouncement = {
+  _id: string;
+  titleAr: string;
+  bodyAr: string;
+  audience: 'all' | 'grade' | 'lecture';
+  lecture: { _id: string; titleAr: string; slug: string } | null;
+  isPinned: boolean;
+  publishedAt: string | null;
+};
+
+export async function getMyAnnouncements(): Promise<StudentAnnouncement[]> {
+  const data = await serverFetch<StudentAnnouncement[]>('/announcements/mine');
+  return data ?? [];
+}

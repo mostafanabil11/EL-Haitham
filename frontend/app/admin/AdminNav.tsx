@@ -10,6 +10,7 @@ const LINKS = [
   { href: '/admin/students', label: 'الطلاب' },
   { href: '/admin/reports', label: 'تقارير أولياء الأمور' },
   { href: '/admin/content', label: 'المحتوى' },
+  { href: '/admin/announcements', label: 'الإعلانات' },
   { href: '/admin/settings', label: 'الإعدادات' },
 ];
 

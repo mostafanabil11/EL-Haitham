@@ -20,6 +20,7 @@ import { CommonModule } from './common/common.module';
 import { ContentModule } from './content/content.module';
 import { CommerceModule } from './commerce/commerce.module';
 import { LearnModule } from './learn/learn.module';
+import { AnnouncementsModule } from './announcements/announcements.module';
 
 @Module({
   imports: [
@@ -53,6 +54,7 @@ import { LearnModule } from './learn/learn.module';
     ContentModule,
     CommerceModule,
     LearnModule,
+    AnnouncementsModule,
   ],
   controllers: [AppController],
   providers: [

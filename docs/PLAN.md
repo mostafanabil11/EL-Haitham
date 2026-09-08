@@ -594,19 +594,48 @@ empties the list. The client now sends no `limit` at all. Worth a look on the AP
 
 ---
 
-## Phase 6 — Parent reports & engagement (~3 days)
+## Phase 6 — Parent reports & engagement 🔶 IN PROGRESS
 
 Scope deliberately cut. The incumbent has quizzes, homework, certificates and a leaderboard, and
 across 117 lectures the teacher has used **none of them**. Building a quiz engine on that evidence
 would be building for an imagined user.
 
-1. **Parent progress reports** ⭐ — the one thing worth adding that the incumbent only half-does. A
-   monthly WhatsApp-ready summary per student (lectures purchased, % watched, last active) that the
-   teacher sends to `parentPhone` in one click. Parents are the payers; this is what renews them.
+1. **Parent progress reports** ⭐ ✅ **DONE** — `/admin/reports`. A month picker, phone/name search,
+   and one row per student showing per-lecture progress bars, average watched, and last activity.
+   Each row hands over a finished Arabic message and a `wa.me` link addressed to **`parentPhone`**,
+   not the student's number — that is the entire point.
+
+   Two honesty constraints shaped the numbers, and both are worth remembering before anyone
+   "improves" them:
+   - `furthestSeconds` is **cumulative, not a time series**. Nothing records how much was watched
+     *within* a month, so the percentage is stated as overall progress and the month only decides
+     which lectures count as active. Reporting a cumulative figure as monthly would inflate every
+     second report and eventually get noticed by a parent comparing two of them.
+   - Percentages are **capped at 100**. A lecture whose recorded duration is later shortened would
+     otherwise put "137%" in a message sent to a parent.
+
+   The screen separates students with nothing to report rather than hiding them: a student who
+   bought nothing this month is exactly who a parent message might win back, but they should not
+   dilute the sendable list. Composing a page costs three queries, not three per student.
+
 2. **Notifications**: in-app bell plus WhatsApp-link nudges for a new lecture and for expiring access.
-3. **Testimonials**: adapt `reviews/` with its moderation flow. Cheap, and the incumbent's reviews
-   section sits switched off.
-4. **Announcements** to all students, one grade, or one lecture.
+   *Not started.*
+3. **Testimonials**: a moderation flow — submit, hold, approve, show. Cheap, and the incumbent's
+   reviews section sits switched off. *Not started.*
+4. **Announcements** ✅ **DONE** — three audiences (everyone / one grade / one lecture's subscribers),
+   drafts, pin-to-top, and an optional expiry.
+   - **Audience without a target is refused** at the DTO *and* re-checked on update. A notice with
+     `audience: 'grade'` and no grade looks published in the admin list while every student sees an
+     empty feed — a failure only discovered through a support message.
+   - **Everything is created as a draft.** One-step write-and-broadcast is how a typo reaches four
+     hundred students.
+   - **`publishedAt` is set on first publish only**, so re-publishing an old notice does not jump it
+     back to the top of everyone's feed as if it were new.
+   - **Optional expiry**, because "الحصة مؤجلة ليوم الخميس" is useful for three days and misleading
+     forever after, and nothing else in the system will remember to take it down.
+   - Lecture-scoped notices are joined against enrollments, so they reach only people who bought
+     that lecture — showing them more widely would be noise *and* would leak what sits behind the
+     paywall.
 
 **Deferred until the teacher asks for them:** quizzes, homework submission, certificates,
 leaderboard. Schemas are sketched in section 2 so adding them later is not a rewrite.
@@ -655,7 +684,7 @@ leaderboard. Schemas are sketched in section 2 so adding them later is not a rew
 | 3 Codes + purchases ⭐ | 5 | 15 |
 | 4 Student experience | 6 | 21 |
 | 5 Teacher dashboard ✅ | 3 | 24 |
-| 6 Parent reports + engagement | 3 | 27 |
+| 6 Parent reports + engagement 🔶 | 3 | 27 |
 | 7 Hardening | 4 | 31 |
 | 8 Launch + content migration | 3 | 34 |
 

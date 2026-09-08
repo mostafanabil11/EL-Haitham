@@ -348,3 +348,24 @@ export async function getStudentReport(
   );
   return result?.data ?? null;
 }
+
+export type Audience = 'all' | 'grade' | 'lecture';
+
+export type AnnouncementRow = {
+  _id: string;
+  titleAr: string;
+  bodyAr: string;
+  audience: Audience;
+  grade: Grade | null;
+  lecture: { _id: string; titleAr: string; slug: string } | null;
+  isPublished: boolean;
+  publishedAt: string | null;
+  expiresAt: string | null;
+  isPinned: boolean;
+  createdAt: string;
+};
+
+export async function getAnnouncements(): Promise<AnnouncementRow[]> {
+  const result = await adminFetch<AnnouncementRow[]>('/admin/announcements');
+  return result?.data ?? [];
+}

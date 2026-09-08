@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { getCurrentUser, getMyEnrollments } from '@/lib/server-api';
+import { getCurrentUser, getMyEnrollments, getMyAnnouncements } from '@/lib/server-api';
 import { GRADE_LABELS_AR, type Grade } from '@/lib/grades';
 import { formatDuration } from '@/lib/format';
 import { LogoutButton } from './LogoutButton';
@@ -15,7 +15,10 @@ export default async function DashboardPage() {
   const user = await getCurrentUser();
   if (!user) redirect('/login?next=/dashboard');
 
-  const enrollments = await getMyEnrollments();
+  const [enrollments, announcements] = await Promise.all([
+    getMyEnrollments(),
+    getMyAnnouncements(),
+  ]);
   const active = enrollments.filter((e) => !e.isExpired);
   const expired = enrollments.filter((e) => e.isExpired);
 
@@ -45,6 +48,45 @@ export default async function DashboardPage() {
           تصفح المحاضرات
         </Link>
       </div>
+
+      {/* Above the lecture list: a notice is the only time-sensitive thing on
+          this page, and a student who scrolls past it has effectively not been
+          told. */}
+      {announcements.length > 0 && (
+        <section className="flex flex-col gap-5">
+          <h2 className="text-lg font-semibold">إعلانات</h2>
+          <ul className="flex flex-col gap-3">
+            {announcements.map((item) => (
+              <li
+                key={item._id}
+                className={`rounded-2xl border p-5 ${
+                  item.isPinned ? 'border-accent/40 bg-accent/5' : 'border-border bg-card'
+                }`}
+              >
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="text-sm font-semibold">{item.titleAr}</h3>
+                  {item.isPinned && (
+                    <span className="rounded-full border border-accent/40 px-2 py-0.5 text-xs text-accent">
+                      مهم
+                    </span>
+                  )}
+                </div>
+                <p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed text-muted">
+                  {item.bodyAr}
+                </p>
+                {item.lecture && (
+                  <Link
+                    href={`/learn/${item.lecture.slug}`}
+                    className="mt-3 inline-block text-xs text-link hover:underline"
+                  >
+                    {item.lecture.titleAr} ←
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <section className="flex flex-col gap-5">
         <h2 className="text-lg font-semibold">محاضراتي ({active.length})</h2>
