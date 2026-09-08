@@ -38,14 +38,14 @@ export function StatCard({
   const body = (
     <>
       <p className="text-xs text-muted">{label}</p>
-      <p className={`mt-1 text-2xl font-bold ${emphasis ? 'text-brand' : ''}`}>{value}</p>
+      <p className={`mt-1 text-2xl font-bold ${emphasis ? 'text-link' : ''}`}>{value}</p>
       {hint && <p className="mt-1 text-xs text-muted">{hint}</p>}
     </>
   );
 
   const className = `rounded-xl border p-4 ${
     emphasis ? 'border-brand/50 bg-brand/5' : 'border-border'
-  } ${href ? 'transition hover:border-brand/60' : ''}`;
+  } ${href ? 'transition hover:border-brand/40' : ''}`;
 
   return href ? (
     <Link href={href} className={`block ${className}`}>
@@ -58,9 +58,9 @@ export function StatCard({
 
 const PILL_STYLES: Record<string, string> = {
   neutral: 'border-border text-muted',
-  positive: 'border-emerald-500/40 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
-  warning: 'border-amber-500/40 bg-amber-500/10 text-amber-600 dark:text-amber-400',
-  danger: 'border-red-500/40 bg-red-500/10 text-red-500',
+  positive: 'border-success/40 bg-success/10 text-success',
+  warning: 'border-accent/40 bg-accent/10 text-accent',
+  danger: 'border-danger/40 bg-danger/10 text-danger',
 };
 
 export function Pill({
@@ -81,7 +81,7 @@ export function Pill({
 
 export function EmptyState({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-xl border border-dashed border-border p-8 text-center text-sm text-muted">
+    <div className="rounded-2xl border border-dashed border-border p-8 text-center text-sm text-muted">
       {children}
     </div>
   );
@@ -94,7 +94,7 @@ export function EmptyState({ children }: { children: React.ReactNode }) {
  * sideways.
  */
 export function Card({ children }: { children: React.ReactNode }) {
-  return <div className="rounded-xl border border-border p-4">{children}</div>;
+  return <div className="rounded-2xl border border-border bg-card p-4">{children}</div>;
 }
 
 export function Pagination({
@@ -122,7 +122,7 @@ export function Pagination({
   return (
     <div className="mt-4 flex items-center justify-between gap-3 text-sm">
       {page > 1 ? (
-        <Link href={build(page - 1)} className="rounded-lg border border-border px-3 py-1.5 hover:border-brand/60">
+        <Link href={build(page - 1)} className="rounded-lg border border-border px-3 py-1.5 hover:border-brand/40">
           السابق
         </Link>
       ) : (
@@ -132,7 +132,7 @@ export function Pagination({
         صفحة {page} من {pages}
       </span>
       {page < pages ? (
-        <Link href={build(page + 1)} className="rounded-lg border border-border px-3 py-1.5 hover:border-brand/60">
+        <Link href={build(page + 1)} className="rounded-lg border border-border px-3 py-1.5 hover:border-brand/40">
           التالي
         </Link>
       ) : (

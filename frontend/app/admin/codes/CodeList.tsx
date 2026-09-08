@@ -79,7 +79,7 @@ export function CodeList({ codes }: { codes: AccessCodeRow[] }) {
       {error && (
         <div
           role="alert"
-          className="mb-4 rounded-lg border border-red-500/40 bg-red-500/10 px-3 py-2.5 text-sm text-red-500"
+          className="mb-4 rounded-lg border border-danger/40 bg-danger/10 px-3 py-2.5 text-sm text-danger"
         >
           {error}
         </div>
@@ -90,7 +90,7 @@ export function CodeList({ codes }: { codes: AccessCodeRow[] }) {
         <button
           type="button"
           onClick={exportCsv}
-          className="rounded-lg border border-border px-3 py-1.5 text-xs transition hover:border-brand/60"
+          className="rounded-lg border border-border px-3 py-1.5 text-xs transition hover:border-brand/40"
         >
           تنزيل CSV
         </button>
@@ -100,7 +100,7 @@ export function CodeList({ codes }: { codes: AccessCodeRow[] }) {
         {codes.map((code) => (
           <li
             key={code._id}
-            className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border px-4 py-3"
+            className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-card px-4 py-3"
           >
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
@@ -109,7 +109,7 @@ export function CodeList({ codes }: { codes: AccessCodeRow[] }) {
                   onClick={() => copy(code)}
                   dir="ltr"
                   title="نسخ"
-                  className="font-mono text-sm font-semibold tracking-wider hover:text-brand"
+                  className="font-mono text-sm font-semibold tracking-wider hover:text-link"
                 >
                   {copiedId === code._id ? 'تم النسخ' : code.code}
                 </button>
@@ -123,7 +123,7 @@ export function CodeList({ codes }: { codes: AccessCodeRow[] }) {
                     {' · '}
                     <Link
                       href={`/admin/codes?batchId=${encodeURIComponent(code.batchId)}`}
-                      className="hover:text-brand"
+                      className="hover:text-link"
                       dir="ltr"
                     >
                       {code.batchId}
@@ -137,7 +137,7 @@ export function CodeList({ codes }: { codes: AccessCodeRow[] }) {
                   فعّله{' '}
                   <Link
                     href={`/admin/students/${code.redeemedBy._id}`}
-                    className="text-brand hover:underline"
+                    className="text-link hover:underline"
                   >
                     {code.redeemedBy.name}
                   </Link>{' '}
@@ -151,7 +151,7 @@ export function CodeList({ codes }: { codes: AccessCodeRow[] }) {
                 type="button"
                 onClick={() => revoke(code)}
                 disabled={busyId === code._id}
-                className="shrink-0 rounded-lg border border-border px-3 py-1.5 text-xs text-muted transition hover:border-red-500/60 hover:text-red-500 disabled:opacity-60"
+                className="shrink-0 rounded-lg border border-border px-3 py-1.5 text-xs text-muted transition hover:border-red-500/60 hover:text-danger disabled:opacity-60"
               >
                 {busyId === code._id ? '...' : 'إلغاء'}
               </button>

@@ -63,7 +63,7 @@ export function SettingsForm({ settings }: { settings: AdminSettings }) {
 
   return (
     <form onSubmit={save} className="flex flex-col gap-6">
-      <section className="rounded-xl border border-border p-4">
+      <section className="rounded-2xl border border-border bg-card p-4">
         <h2 className="mb-3 text-sm font-semibold">الموقع</h2>
         <div className="grid gap-3 sm:grid-cols-2">
           <TextInput name="siteName" label="اسم الموقع" defaultValue={settings.siteName} required />
@@ -83,13 +83,13 @@ export function SettingsForm({ settings }: { settings: AdminSettings }) {
               rows={3}
               maxLength={2000}
               defaultValue={settings.teacherBio ?? ''}
-              className="rounded-lg border border-border bg-transparent px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+              className="rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
             />
           </label>
         </div>
       </section>
 
-      <section className="rounded-xl border border-border p-4">
+      <section className="rounded-2xl border border-border bg-card p-4">
         <h2 className="mb-3 text-sm font-semibold">روابط التواصل</h2>
         <div className="grid gap-3 sm:grid-cols-2">
           <TextInput name="facebook" label="فيسبوك" defaultValue={settings.socialLinks.facebook ?? ''} dir="ltr" type="url" />
@@ -99,7 +99,7 @@ export function SettingsForm({ settings }: { settings: AdminSettings }) {
         </div>
       </section>
 
-      <section className="rounded-xl border border-border p-4">
+      <section className="rounded-2xl border border-border bg-card p-4">
         <h2 className="mb-3 text-sm font-semibold">التشغيل</h2>
         <div className="grid gap-3 sm:grid-cols-2">
           <TextInput
@@ -151,11 +151,11 @@ export function SettingsForm({ settings }: { settings: AdminSettings }) {
         >
           {pending ? '...' : 'حفظ الإعدادات'}
         </button>
-        {saved && <span className="text-sm text-emerald-600 dark:text-emerald-400">تم الحفظ</span>}
+        {saved && <span className="text-sm text-success">تم الحفظ</span>}
       </div>
 
       {error && (
-        <p role="alert" className="rounded-lg border border-red-500/40 bg-red-500/10 px-3 py-2.5 text-sm text-red-500">
+        <p role="alert" className="rounded-lg border border-danger/40 bg-danger/10 px-3 py-2.5 text-sm text-danger">
           {error}
         </p>
       )}
@@ -193,7 +193,7 @@ function TextInput({
         required={required}
         pattern={pattern}
         defaultValue={defaultValue}
-        className={`rounded-lg border border-border bg-transparent px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40 ${
+        className={`rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40 ${
           dir === 'ltr' ? 'text-start' : ''
         }`}
       />

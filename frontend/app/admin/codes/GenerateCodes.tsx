@@ -71,7 +71,7 @@ export function GenerateCodes({ lectures }: { lectures: AdminLecture[] }) {
   }
 
   return (
-    <div className="rounded-xl border border-border p-4">
+    <div className="rounded-2xl border border-border bg-card p-4">
       <div className="mb-4 flex items-center justify-between gap-3">
         <h2 className="text-base font-semibold">إنشاء دفعة أكواد</h2>
         <button
@@ -94,7 +94,7 @@ export function GenerateCodes({ lectures }: { lectures: AdminLecture[] }) {
             name="lectureId"
             required
             defaultValue=""
-            className="w-full rounded-lg border border-border bg-transparent px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="w-full rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
           >
             <option value="" disabled>
               اختر محاضرة
@@ -118,7 +118,7 @@ export function GenerateCodes({ lectures }: { lectures: AdminLecture[] }) {
             defaultValue={10}
             required
             dir="ltr"
-            className="w-24 rounded-lg border border-border bg-transparent px-3 py-2.5 text-start text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="w-24 rounded-lg border border-border bg-card px-3 py-2.5 text-start text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
           />
         </label>
 
@@ -131,7 +131,7 @@ export function GenerateCodes({ lectures }: { lectures: AdminLecture[] }) {
             type="text"
             maxLength={300}
             placeholder="مثال: سنتر النور — دفعة يناير"
-            className="w-full rounded-lg border border-border bg-transparent px-3 py-2.5 text-sm outline-none transition placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="w-full rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/40"
           />
         </label>
 
@@ -145,7 +145,7 @@ export function GenerateCodes({ lectures }: { lectures: AdminLecture[] }) {
       </form>
 
       {error && (
-        <p role="alert" className="mt-3 text-sm text-red-500">
+        <p role="alert" className="mt-3 text-sm text-danger">
           {error}
         </p>
       )}
@@ -153,7 +153,7 @@ export function GenerateCodes({ lectures }: { lectures: AdminLecture[] }) {
       {sellable.length === 0 && (
         <p className="mt-3 text-sm text-muted">
           لا توجد محاضرات بعد.{' '}
-          <Link href="/admin/content" className="text-brand hover:underline">
+          <Link href="/admin/content" className="text-link hover:underline">
             أضف محاضرة أولاً
           </Link>
           .
@@ -179,7 +179,7 @@ function GeneratedBatch({ result }: { result: GenerateResult }) {
   }
 
   return (
-    <div className="mt-4 rounded-lg border border-emerald-500/40 bg-emerald-500/5 p-3">
+    <div className="mt-4 rounded-lg border border-success/40 bg-success/10 p-3">
       <p className="text-sm">
         تم إنشاء {result.codes.length} كود · دفعة{' '}
         <span dir="ltr" className="font-mono">
@@ -197,7 +197,7 @@ function GeneratedBatch({ result }: { result: GenerateResult }) {
         <button
           type="button"
           onClick={copyAll}
-          className="rounded-lg border border-border px-3 py-2 text-sm transition hover:border-brand/60"
+          className="rounded-lg border border-border px-3 py-2 text-sm transition hover:border-brand/40"
         >
           {copied ? 'تم النسخ' : 'نسخ الكل'}
         </button>
@@ -210,13 +210,13 @@ function GeneratedBatch({ result }: { result: GenerateResult }) {
               result.codes.map((code) => [code]),
             )
           }
-          className="rounded-lg border border-border px-3 py-2 text-sm transition hover:border-brand/60"
+          className="rounded-lg border border-border px-3 py-2 text-sm transition hover:border-brand/40"
         >
           تنزيل CSV
         </button>
         <Link
           href={`/admin/codes?batchId=${encodeURIComponent(result.batchId)}`}
-          className="rounded-lg border border-border px-3 py-2 text-sm transition hover:border-brand/60"
+          className="rounded-lg border border-border px-3 py-2 text-sm transition hover:border-brand/40"
         >
           عرض الدفعة
         </Link>

@@ -85,7 +85,7 @@ export function ThemeToggle({ className = '' }: { className?: string }) {
       title={`المظهر: ${LABEL[theme]} — اضغط للتبديل إلى ${LABEL[next]}`}
       aria-label={`المظهر الحالي ${LABEL[theme]}. اضغط للتبديل إلى ${LABEL[next]}`}
       className={`inline-flex size-8 items-center justify-center rounded-lg border border-border
-        text-muted transition hover:border-brand/60 hover:text-foreground ${className}`}
+        text-muted transition hover:border-brand/40 hover:text-foreground ${className}`}
     >
       <ThemeIcon theme={theme} />
     </button>

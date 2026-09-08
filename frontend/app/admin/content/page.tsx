@@ -36,7 +36,7 @@ export default async function ContentPage({
         action={
           <a
             href={includeArchived ? '/admin/content' : '/admin/content?archived=1'}
-            className="text-sm text-brand hover:underline"
+            className="text-sm text-link hover:underline"
           >
             {includeArchived ? 'إخفاء المؤرشف' : 'عرض المؤرشف'}
           </a>

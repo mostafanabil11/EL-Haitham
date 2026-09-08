@@ -3,8 +3,7 @@
 /*
  * Tailwind's `dark:` variant defaults to `prefers-color-scheme` alone, which
  * would disagree with the switcher: pick light on a dark-mode phone and the
- * page turns light while every `dark:` utility stays dark, so the "تم الحفظ"
- * text and the status pills end up mistinted against their new background.
+ * page turns light while every `dark:` utility stays dark.
  *
  * Redefining the variant with the same two-way rule the tokens use keeps them
  * in step — an explicit choice wins, and the OS decides only when there is no
@@ -22,62 +21,138 @@
 }
 
 /*
- * Light is the base. Every colour the app uses is defined here and nowhere
- * else, so a token can never exist only inside a media query — which is the
- * usual way a theme ends up with an unreadable control in one mode.
+ * Palette from design/…/DESIGN.md — "Modern Scholarly Arabic Academy".
+ *
+ * Three colours carry the whole system:
+ *   navy  — authority. Primary actions, headings, the surfaces that frame content.
+ *   gold  — achievement. Progress, milestones, the one action on a dark surface.
+ *   teal  — navigation. Links and secondary metrics, so they read as clickable
+ *           next to navy body text rather than disappearing into it.
+ *
+ * Light is the base, and every token is defined here so none can exist only
+ * inside a media query.
  */
 :root {
-  --background: #ffffff;
-  --foreground: #14161a;
-  --muted: #5b6472;
-  --border: #e3e7ec;
-  --brand: #1f6feb;
+  --background: #f8fafc; /* base ground — cool alabaster, glare-free for long reading */
+  --card: #ffffff;
+  --trough: #f1f5f9; /* inset surfaces, track backgrounds, disabled rows */
+  --foreground: #0b1c30;
+  --muted: #51607a;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+
+  --brand: #16203b; /* primary action */
   --brand-contrast: #ffffff;
+  --accent: #c5933a; /* amber gold */
+  --accent-contrast: #16203b;
+  --link: #1e6b7b; /* warm teal */
+
+  --success: #15803d;
+  --danger: #b91c1c;
+
+  /* The dark panel used for heroes and the "now playing" row, which stays dark
+     in both themes — it is a deliberate surface, not a consequence of theme. */
+  --panel: #16203b;
+  --panel-foreground: #eaf1ff;
+  --panel-muted: #9fb0cc;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-card: var(--card);
+  --color-trough: var(--trough);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --color-brand: var(--brand);
   --color-brand-contrast: var(--brand-contrast);
-  --font-sans: var(--font-cairo);
+  --color-accent: var(--accent);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-link: var(--link);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --color-panel: var(--panel);
+  --color-panel-foreground: var(--panel-foreground);
+  --color-panel-muted: var(--panel-muted);
+  --font-sans: var(--font-plex-arabic);
 }
 
 /*
- * The dark palette, defined once and applied from two directions:
+ * Dark counterpart.
  *
- *   1. the OS preference, but only while the reader has NOT explicitly asked
- *      for light — without that guard, choosing light on a dark-mode phone
- *      does nothing, because the media query keeps winning;
- *   2. an explicit choice, which must beat the OS in both directions.
- *
- * `data-theme` is stamped on <html> by the inline script in the layout before
- * first paint, so there is no flash of the wrong palette on load.
+ * Navy cannot lead here — a navy button on a navy page is invisible — so the
+ * roles swap and gold becomes the primary action. That is what the design
+ * itself does on its dark panels: every call to action sitting on navy in the
+ * mockups is gold.
  */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --background: #0d0f13;
-    --foreground: #eef1f5;
-    --muted: #9aa4b2;
-    --border: #232830;
-    --brand: #4c8dff;
+    --background: #0a1120;
+    --card: #131d33;
+    --trough: #1a2540;
+    --foreground: #eaf1ff;
+    --muted: #9aa9c4;
+    --border: #24314e;
+    --border-strong: #35456a;
+
+    --brand: #e0b45f;
+    --brand-contrast: #16203b;
+    --accent: #e0b45f;
+    --accent-contrast: #16203b;
+    --link: #7fc8d8;
+
+    --success: #4ade80;
+    --danger: #f87171;
+
+    /* Already dark; a touch lighter than the page so the panel still reads as
+       a raised surface rather than a hole. */
+    --panel: #1b2740;
+    --panel-foreground: #eaf1ff;
+    --panel-muted: #9fb0cc;
   }
 }
 
 :root[data-theme="dark"] {
-  --background: #0d0f13;
-  --foreground: #eef1f5;
-  --muted: #9aa4b2;
-  --border: #232830;
-  --brand: #4c8dff;
+  --background: #0a1120;
+  --card: #131d33;
+  --trough: #1a2540;
+  --foreground: #eaf1ff;
+  --muted: #9aa9c4;
+  --border: #24314e;
+  --border-strong: #35456a;
+
+  --brand: #e0b45f;
+  --brand-contrast: #16203b;
+  --accent: #e0b45f;
+  --accent-contrast: #16203b;
+  --link: #7fc8d8;
+
+  --success: #4ade80;
+  --danger: #f87171;
+
+  --panel: #1b2740;
+  --panel-foreground: #eaf1ff;
+  --panel-muted: #9fb0cc;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-cairo), system-ui, sans-serif;
+  font-family: var(--font-plex-arabic), system-ui, sans-serif;
+  /*
+   * Arabic needs roughly 20–30% more leading than Latin, or the diacritics
+   * (shaddah, tanween, kasrah) collide with the line above. This is the single
+   * most consequential typographic setting on an Arabic site.
+   */
+  line-height: 1.75;
+}
+
+/* Headings tighten up — the generous body leading looks slack on a 40px title. */
+h1,
+h2,
+h3 {
+  line-height: 1.35;
 }
 
 /*

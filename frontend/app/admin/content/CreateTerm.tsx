@@ -57,7 +57,7 @@ export function CreateTerm() {
   }
 
   return (
-    <form onSubmit={submit} className="rounded-xl border border-border p-4">
+    <form onSubmit={submit} className="rounded-2xl border border-border bg-card p-4">
       <div className="mb-3 flex items-center justify-between gap-3">
         <h2 className="text-base font-semibold">ترم جديد</h2>
         <button type="button" onClick={() => setOpen(false)} className="text-sm text-muted hover:text-foreground">
@@ -74,7 +74,7 @@ export function CreateTerm() {
             minLength={2}
             maxLength={120}
             placeholder="الترم الأول"
-            className="rounded-lg border border-border bg-transparent px-3 py-2.5 text-sm outline-none transition placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/40"
           />
         </label>
 
@@ -84,7 +84,7 @@ export function CreateTerm() {
             name="grade"
             required
             defaultValue=""
-            className="rounded-lg border border-border bg-transparent px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
           >
             <option value="" disabled>
               اختر
@@ -105,7 +105,7 @@ export function CreateTerm() {
             dir="ltr"
             pattern="\d{4}/\d{4}"
             defaultValue={currentAcademicYear()}
-            className="rounded-lg border border-border bg-transparent px-3 py-2.5 text-start text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="rounded-lg border border-border bg-card px-3 py-2.5 text-start text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
           />
         </label>
 
@@ -119,7 +119,7 @@ export function CreateTerm() {
       </div>
 
       {error && (
-        <p role="alert" className="mt-3 text-sm text-red-500">
+        <p role="alert" className="mt-3 text-sm text-danger">
           {error}
         </p>
       )}

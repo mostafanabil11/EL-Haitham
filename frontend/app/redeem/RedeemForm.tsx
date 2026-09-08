@@ -45,7 +45,7 @@ export function RedeemForm() {
     return (
       <div className="flex flex-col gap-4">
         <div className="rounded-lg border border-brand/40 bg-brand/10 px-4 py-3">
-          <p className="font-semibold text-brand">تم التفعيل بنجاح</p>
+          <p className="font-semibold text-link">تم التفعيل بنجاح</p>
           <ul className="mt-2 flex flex-col gap-1 text-sm">
             {granted.map((l) => (
               <li key={l.slug}>• {l.titleAr}</li>
@@ -85,7 +85,7 @@ export function RedeemForm() {
           // Centred and letter-spaced: a code is read character by character,
           // and the extra spacing is what makes a mistyped one visible before
           // the student presses the button.
-          className="w-full rounded-lg border border-border bg-transparent px-3 py-3 text-center font-mono text-lg tracking-[0.2em] outline-none transition placeholder:tracking-normal placeholder:text-muted/50 focus:border-brand focus:ring-2 focus:ring-brand/40"
+          className="w-full rounded-lg border border-border bg-card px-3 py-3 text-center font-mono text-lg tracking-[0.2em] outline-none transition placeholder:tracking-normal placeholder:text-muted/50 focus:border-brand focus:ring-2 focus:ring-brand/40"
         />
       </div>
 

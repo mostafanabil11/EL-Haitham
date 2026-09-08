@@ -31,24 +31,24 @@ export default async function StudentPage({ params }: { params: Promise<{ id: st
           lastActiveAt ? `آخر مشاهدة ${relativeAr(lastActiveAt)}` : 'لم يشاهد شيئاً بعد',
         ].join(' · ')}
         action={
-          <Link href="/admin/students" className="text-sm text-brand hover:underline">
+          <Link href="/admin/students" className="text-sm text-link hover:underline">
             رجوع للقائمة
           </Link>
         }
       />
 
-      <section className="rounded-xl border border-border p-4">
+      <section className="rounded-2xl border border-border bg-card p-4">
         <h2 className="mb-3 text-sm font-semibold">بيانات التواصل</h2>
         <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-sm">
           <dt className="text-muted">هاتف الطالب</dt>
           <dd dir="ltr" className="text-start font-medium">
-            <a href={`https://wa.me/${student.phone}`} target="_blank" rel="noopener noreferrer" className="hover:text-brand">
+            <a href={`https://wa.me/${student.phone}`} target="_blank" rel="noopener noreferrer" className="hover:text-link">
               {toLocalPhone(student.phone)}
             </a>
           </dd>
           <dt className="text-muted">هاتف ولي الأمر</dt>
           <dd dir="ltr" className="text-start font-medium">
-            <a href={`https://wa.me/${student.parentPhone}`} target="_blank" rel="noopener noreferrer" className="hover:text-brand">
+            <a href={`https://wa.me/${student.parentPhone}`} target="_blank" rel="noopener noreferrer" className="hover:text-link">
               {toLocalPhone(student.parentPhone)}
             </a>
           </dd>
@@ -85,7 +85,7 @@ export default async function StudentPage({ params }: { params: Promise<{ id: st
             {progress.map((row) => (
               <li
                 key={row._id}
-                className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border px-4 py-3"
+                className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-card px-4 py-3"
               >
                 <div className="min-w-0">
                   <p className="truncate text-sm">{row.lecture?.titleAr ?? 'محاضرة محذوفة'}</p>
@@ -114,7 +114,7 @@ export default async function StudentPage({ params }: { params: Promise<{ id: st
             {codes.map((code) => (
               <li
                 key={code._id}
-                className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border px-4 py-3"
+                className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-card px-4 py-3"
               >
                 <div className="min-w-0">
                   <p dir="ltr" className="text-start font-mono text-sm font-semibold">
@@ -141,7 +141,7 @@ export default async function StudentPage({ params }: { params: Promise<{ id: st
             {requests.map((request) => (
               <li
                 key={request._id}
-                className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border px-4 py-3"
+                className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-card px-4 py-3"
               >
                 <div className="min-w-0">
                   <p className="truncate text-sm">{request.titleSnapshot}</p>

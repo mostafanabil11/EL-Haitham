@@ -84,7 +84,7 @@ export function LectureEditor({ lecture }: { lecture: AdminLectureDetail }) {
   }
 
   return (
-    <section className="rounded-xl border border-border p-4">
+    <section className="rounded-2xl border border-border bg-card p-4">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2">
           {lecture.isPublished ? <Pill tone="positive">منشورة</Pill> : <Pill tone="warning">مسودة</Pill>}
@@ -102,7 +102,7 @@ export function LectureEditor({ lecture }: { lecture: AdminLectureDetail }) {
             type="button"
             onClick={togglePublish}
             disabled={pending}
-            className="rounded-lg border border-border px-3 py-1.5 text-xs transition hover:border-brand/60 disabled:opacity-60"
+            className="rounded-lg border border-border px-3 py-1.5 text-xs transition hover:border-brand/40 disabled:opacity-60"
           >
             {lecture.isPublished ? 'إخفاء' : 'نشر'}
           </button>
@@ -110,7 +110,7 @@ export function LectureEditor({ lecture }: { lecture: AdminLectureDetail }) {
             type="button"
             onClick={toggleArchive}
             disabled={pending}
-            className="rounded-lg border border-border px-3 py-1.5 text-xs text-muted transition hover:border-brand/60 disabled:opacity-60"
+            className="rounded-lg border border-border px-3 py-1.5 text-xs text-muted transition hover:border-brand/40 disabled:opacity-60"
           >
             {lecture.isArchived ? 'إلغاء الأرشفة' : 'أرشفة'}
           </button>
@@ -136,7 +136,7 @@ export function LectureEditor({ lecture }: { lecture: AdminLectureDetail }) {
             minLength={2}
             maxLength={200}
             defaultValue={lecture.titleAr}
-            className="rounded-lg border border-border bg-transparent px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
           />
         </label>
 
@@ -150,7 +150,7 @@ export function LectureEditor({ lecture }: { lecture: AdminLectureDetail }) {
             required
             dir="ltr"
             defaultValue={lecture.priceMinorUnits / 100}
-            className="rounded-lg border border-border bg-transparent px-3 py-2.5 text-start text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="rounded-lg border border-border bg-card px-3 py-2.5 text-start text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
           />
         </label>
 
@@ -165,7 +165,7 @@ export function LectureEditor({ lecture }: { lecture: AdminLectureDetail }) {
             max={730}
             dir="ltr"
             defaultValue={lecture.accessDurationDays ?? ''}
-            className="rounded-lg border border-border bg-transparent px-3 py-2.5 text-start text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="rounded-lg border border-border bg-card px-3 py-2.5 text-start text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
           />
         </label>
 
@@ -178,7 +178,7 @@ export function LectureEditor({ lecture }: { lecture: AdminLectureDetail }) {
             rows={3}
             maxLength={3000}
             defaultValue={lecture.description ?? ''}
-            className="rounded-lg border border-border bg-transparent px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
           />
         </label>
 
@@ -190,12 +190,12 @@ export function LectureEditor({ lecture }: { lecture: AdminLectureDetail }) {
           >
             {pending ? '...' : 'حفظ'}
           </button>
-          {saved && <span className="text-sm text-emerald-600 dark:text-emerald-400">تم الحفظ</span>}
+          {saved && <span className="text-sm text-success">تم الحفظ</span>}
         </div>
       </form>
 
       {error && (
-        <p role="alert" className="mt-3 text-sm text-red-500">
+        <p role="alert" className="mt-3 text-sm text-danger">
           {error}
         </p>
       )}

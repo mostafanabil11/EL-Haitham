@@ -80,7 +80,7 @@ export function RequestList({ requests }: { requests: PurchaseRequestRow[] }) {
       {error && (
         <div
           role="alert"
-          className="mb-4 rounded-lg border border-red-500/40 bg-red-500/10 px-3 py-2.5 text-sm text-red-500"
+          className="mb-4 rounded-lg border border-danger/40 bg-danger/10 px-3 py-2.5 text-sm text-danger"
         >
           {error}
         </div>
@@ -95,7 +95,7 @@ export function RequestList({ requests }: { requests: PurchaseRequestRow[] }) {
           const status = result ? 'paid' : request.status;
 
           return (
-            <li key={request._id} className="rounded-xl border border-border p-4">
+            <li key={request._id} className="rounded-2xl border border-border bg-card p-4">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
@@ -116,7 +116,7 @@ export function RequestList({ requests }: { requests: PurchaseRequestRow[] }) {
                       <>
                         <Link
                           href={`/admin/students/${request.user._id}`}
-                          className="text-brand hover:underline"
+                          className="text-link hover:underline"
                         >
                           {request.user.name}
                         </Link>
@@ -143,7 +143,7 @@ export function RequestList({ requests }: { requests: PurchaseRequestRow[] }) {
                       type="button"
                       onClick={() => cancel(request)}
                       disabled={busy}
-                      className="rounded-lg border border-border px-3 py-2 text-sm text-muted transition hover:border-red-500/60 hover:text-red-500 disabled:opacity-60"
+                      className="rounded-lg border border-border px-3 py-2 text-sm text-muted transition hover:border-red-500/60 hover:text-danger disabled:opacity-60"
                     >
                       إلغاء
                     </button>
@@ -196,7 +196,7 @@ function ConfirmedPanel({ result, phone }: { result: ConfirmResult; phone: strin
   }
 
   return (
-    <div className="mt-3 rounded-lg border border-emerald-500/40 bg-emerald-500/5 p-3">
+    <div className="mt-3 rounded-lg border border-success/40 bg-success/10 p-3">
       <p className="text-xs text-muted">تم التأكيد وإصدار الكود</p>
       <p dir="ltr" className="mt-1 text-start font-mono text-lg font-bold tracking-wider">
         {result.code}
@@ -218,7 +218,7 @@ function ConfirmedPanel({ result, phone }: { result: ConfirmResult; phone: strin
         <button
           type="button"
           onClick={copy}
-          className="rounded-lg border border-border px-3 py-2 text-sm transition hover:border-brand/60"
+          className="rounded-lg border border-border px-3 py-2 text-sm transition hover:border-brand/40"
         >
           {copied ? 'تم النسخ' : 'نسخ الرسالة'}
         </button>

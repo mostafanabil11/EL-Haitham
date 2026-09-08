@@ -66,7 +66,7 @@ export function BuyButton({ lectureId, slug, isSignedIn, fallbackWhatsAppUrl }: 
       </button>
 
       {error && (
-        <p role="alert" className="text-xs text-red-500">
+        <p role="alert" className="text-xs text-danger">
           {error}
         </p>
       )}

@@ -38,12 +38,12 @@ export function EnrollmentRow({ enrollment }: { enrollment: Enrollment }) {
   const title = enrollment.lecture?.titleAr ?? 'محاضرة محذوفة';
 
   return (
-    <li className="rounded-lg border border-border px-4 py-3">
+    <li className="rounded-xl border border-border bg-card px-4 py-3">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2">
             {enrollment.lecture ? (
-              <Link href={`/lectures/${enrollment.lecture.slug}`} className="truncate text-sm font-medium hover:text-brand">
+              <Link href={`/lectures/${enrollment.lecture.slug}`} className="truncate text-sm font-medium hover:text-link">
                 {title}
               </Link>
             ) : (
@@ -65,7 +65,7 @@ export function EnrollmentRow({ enrollment }: { enrollment: Enrollment }) {
             type="button"
             disabled={pending}
             onClick={() => call(`/admin/enrollments/${enrollment._id}/extend`, { days: 30 })}
-            className="rounded-lg border border-border px-3 py-1.5 text-xs transition hover:border-brand/60 disabled:opacity-60"
+            className="rounded-lg border border-border px-3 py-1.5 text-xs transition hover:border-brand/40 disabled:opacity-60"
           >
             +30 يوم
           </button>
@@ -83,8 +83,8 @@ export function EnrollmentRow({ enrollment }: { enrollment: Enrollment }) {
             }
             className={`rounded-lg border border-border px-3 py-1.5 text-xs transition disabled:opacity-60 ${
               enrollment.isActive
-                ? 'text-muted hover:border-red-500/60 hover:text-red-500'
-                : 'hover:border-brand/60'
+                ? 'text-muted hover:border-red-500/60 hover:text-danger'
+                : 'hover:border-brand/40'
             }`}
           >
             {enrollment.isActive ? 'سحب الوصول' : 'إعادة التفعيل'}
@@ -93,7 +93,7 @@ export function EnrollmentRow({ enrollment }: { enrollment: Enrollment }) {
       </div>
 
       {error && (
-        <p role="alert" className="mt-2 text-xs text-red-500">
+        <p role="alert" className="mt-2 text-xs text-danger">
           {error}
         </p>
       )}

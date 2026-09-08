@@ -130,20 +130,20 @@ export function ItemsManager({
         <button
           type="button"
           onClick={() => setAdding((value) => !value)}
-          className="rounded-lg border border-border px-3 py-1.5 text-sm transition hover:border-brand/60"
+          className="rounded-lg border border-border px-3 py-1.5 text-sm transition hover:border-brand/40"
         >
           إضافة درس
         </button>
       </div>
 
       {error && (
-        <p role="alert" className="mb-3 rounded-lg border border-red-500/40 bg-red-500/10 px-3 py-2.5 text-sm text-red-500">
+        <p role="alert" className="mb-3 rounded-lg border border-danger/40 bg-danger/10 px-3 py-2.5 text-sm text-danger">
           {error}
         </p>
       )}
 
       {adding && (
-        <form onSubmit={addItem} className="mb-4 rounded-xl border border-border p-4">
+        <form onSubmit={addItem} className="mb-4 rounded-2xl border border-border bg-card p-4">
           <ItemFields />
           <div className="mt-3 flex gap-2">
             <button
@@ -156,7 +156,7 @@ export function ItemsManager({
             <button
               type="button"
               onClick={() => setAdding(false)}
-              className="rounded-lg border border-border px-4 py-2 text-sm transition hover:border-brand/60"
+              className="rounded-lg border border-border px-4 py-2 text-sm transition hover:border-brand/40"
             >
               إلغاء
             </button>
@@ -169,7 +169,7 @@ export function ItemsManager({
       ) : (
         <ul className="flex flex-col gap-2">
           {items.map((item, index) => (
-            <li key={item._id} className="rounded-lg border border-border px-4 py-3">
+            <li key={item._id} className="rounded-xl border border-border bg-card px-4 py-3">
               {editingId === item._id ? (
                 <form onSubmit={(event) => saveItem(item, event)}>
                   <ItemFields item={item} />
@@ -184,7 +184,7 @@ export function ItemsManager({
                     <button
                       type="button"
                       onClick={() => setEditingId(null)}
-                      className="rounded-lg border border-border px-4 py-2 text-sm transition hover:border-brand/60"
+                      className="rounded-lg border border-border px-4 py-2 text-sm transition hover:border-brand/40"
                     >
                       إلغاء
                     </button>
@@ -215,7 +215,7 @@ export function ItemsManager({
                       onClick={() => move(index, -1)}
                       disabled={pending || index === 0}
                       aria-label="تحريك لأعلى"
-                      className="rounded-lg border border-border px-2 py-1.5 text-xs transition hover:border-brand/60 disabled:opacity-40"
+                      className="rounded-lg border border-border px-2 py-1.5 text-xs transition hover:border-brand/40 disabled:opacity-40"
                     >
                       ↑
                     </button>
@@ -224,14 +224,14 @@ export function ItemsManager({
                       onClick={() => move(index, 1)}
                       disabled={pending || index === items.length - 1}
                       aria-label="تحريك لأسفل"
-                      className="rounded-lg border border-border px-2 py-1.5 text-xs transition hover:border-brand/60 disabled:opacity-40"
+                      className="rounded-lg border border-border px-2 py-1.5 text-xs transition hover:border-brand/40 disabled:opacity-40"
                     >
                       ↓
                     </button>
                     <button
                       type="button"
                       onClick={() => setEditingId(item._id)}
-                      className="rounded-lg border border-border px-3 py-1.5 text-xs transition hover:border-brand/60"
+                      className="rounded-lg border border-border px-3 py-1.5 text-xs transition hover:border-brand/40"
                     >
                       تحرير
                     </button>
@@ -239,7 +239,7 @@ export function ItemsManager({
                       type="button"
                       onClick={() => remove(item)}
                       disabled={pending}
-                      className="rounded-lg border border-border px-3 py-1.5 text-xs text-muted transition hover:border-red-500/60 hover:text-red-500 disabled:opacity-60"
+                      className="rounded-lg border border-border px-3 py-1.5 text-xs text-muted transition hover:border-red-500/60 hover:text-danger disabled:opacity-60"
                     >
                       حذف
                     </button>
@@ -275,7 +275,7 @@ function ItemFields({ item }: { item?: AdminLectureItem }) {
           maxLength={200}
           defaultValue={item?.titleAr ?? ''}
           placeholder="شرح الدرس"
-          className="rounded-lg border border-border bg-transparent px-3 py-2.5 text-sm outline-none transition placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/40"
+          className="rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/40"
         />
       </label>
 
@@ -286,7 +286,7 @@ function ItemFields({ item }: { item?: AdminLectureItem }) {
             name="type"
             value={type}
             onChange={(event) => setType(event.target.value as LectureItemType)}
-            className="rounded-lg border border-border bg-transparent px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
           >
             {(Object.keys(TYPE_LABEL) as LectureItemType[]).map((value) => (
               <option key={value} value={value}>
@@ -308,7 +308,7 @@ function ItemFields({ item }: { item?: AdminLectureItem }) {
               dir="ltr"
               maxLength={200}
               defaultValue={item?.videoAssetId ?? ''}
-              className="rounded-lg border border-border bg-transparent px-3 py-2.5 text-start text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+              className="rounded-lg border border-border bg-card px-3 py-2.5 text-start text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
             />
           </label>
           <label className="flex flex-col gap-1.5 text-sm">
@@ -320,7 +320,7 @@ function ItemFields({ item }: { item?: AdminLectureItem }) {
               step={1}
               dir="ltr"
               defaultValue={item ? Math.round(item.videoDurationSeconds / 60) : 0}
-              className="rounded-lg border border-border bg-transparent px-3 py-2.5 text-start text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+              className="rounded-lg border border-border bg-card px-3 py-2.5 text-start text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
             />
           </label>
         </>
@@ -334,7 +334,7 @@ function ItemFields({ item }: { item?: AdminLectureItem }) {
             rows={5}
             required
             defaultValue={item?.contentHtml ?? ''}
-            className="rounded-lg border border-border bg-transparent px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+            className="rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
           />
         </label>
       )}

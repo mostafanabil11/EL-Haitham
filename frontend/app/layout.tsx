@@ -1,14 +1,21 @@
 import type { Metadata } from "next";
-import { Cairo } from "next/font/google";
+import { IBM_Plex_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 
-// Cairo carries real Arabic weights. Without an explicit Arabic face the
-// browser falls back to whatever it has, which on Windows is Tahoma and looks
-// noticeably worse than the rest of the page.
-const cairo = Cairo({
-  variable: "--font-cairo",
+// IBM Plex Sans Arabic, per the design system: a deliberate, modern face that
+// balances mechanical precision with Kufic structure, and avoids the informal
+// roundness that makes an exam-prep platform read as a children's app. Without
+// an explicit Arabic face the browser falls back to whatever it has, which on
+// Windows is Tahoma.
+//
+// Weights are named rather than left to default: variable Arabic subsets are
+// not published for this family, so an unlisted weight silently renders as a
+// synthesised bold.
+const plexArabic = IBM_Plex_Sans_Arabic({
+  variable: "--font-plex-arabic",
   subsets: ["arabic", "latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -64,7 +71,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="ar-EG-u-nu-latn"
       dir="rtl"
-      className={`${cairo.variable} h-full antialiased`}
+      className={`${plexArabic.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>

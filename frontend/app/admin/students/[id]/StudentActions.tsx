@@ -88,7 +88,7 @@ export function StudentActions({
             setPanel(panel === 'grant' ? null : 'grant');
             setError(null);
           }}
-          className="rounded-lg border border-border px-3 py-2 text-sm transition hover:border-brand/60"
+          className="rounded-lg border border-border px-3 py-2 text-sm transition hover:border-brand/40"
         >
           منح وصول لمحاضرة
         </button>
@@ -98,33 +98,33 @@ export function StudentActions({
             setPanel(panel === 'password' ? null : 'password');
             setError(null);
           }}
-          className="rounded-lg border border-border px-3 py-2 text-sm transition hover:border-brand/60"
+          className="rounded-lg border border-border px-3 py-2 text-sm transition hover:border-brand/40"
         >
           تغيير كلمة المرور
         </button>
       </div>
 
       {notice && (
-        <p className="mt-3 rounded-lg border border-emerald-500/40 bg-emerald-500/10 px-3 py-2.5 text-sm text-emerald-600 dark:text-emerald-400">
+        <p className="mt-3 rounded-lg border border-success/40 bg-success/10 px-3 py-2.5 text-sm text-success">
           {notice}
         </p>
       )}
 
       {error && (
-        <p role="alert" className="mt-3 rounded-lg border border-red-500/40 bg-red-500/10 px-3 py-2.5 text-sm text-red-500">
+        <p role="alert" className="mt-3 rounded-lg border border-danger/40 bg-danger/10 px-3 py-2.5 text-sm text-danger">
           {error}
         </p>
       )}
 
       {panel === 'grant' && (
-        <form onSubmit={grant} className="mt-3 flex flex-wrap items-end gap-2 rounded-xl border border-border p-4">
+        <form onSubmit={grant} className="mt-3 flex flex-wrap items-end gap-2 rounded-2xl border border-border bg-card p-4">
           <label className="flex min-w-60 flex-1 flex-col gap-1.5 text-sm">
             <span className="font-medium">المحاضرة</span>
             <select
               name="lectureId"
               required
               defaultValue=""
-              className="w-full rounded-lg border border-border bg-transparent px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+              className="w-full rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
             >
               <option value="" disabled>
                 اختر محاضرة
@@ -152,7 +152,7 @@ export function StudentActions({
       )}
 
       {panel === 'password' && (
-        <form onSubmit={resetPassword} className="mt-3 flex flex-wrap items-end gap-2 rounded-xl border border-border p-4">
+        <form onSubmit={resetPassword} className="mt-3 flex flex-wrap items-end gap-2 rounded-2xl border border-border bg-card p-4">
           <label className="flex min-w-60 flex-1 flex-col gap-1.5 text-sm">
             <span className="font-medium">كلمة المرور الجديدة</span>
             <input
@@ -164,7 +164,7 @@ export function StudentActions({
               dir="ltr"
               autoComplete="off"
               placeholder="8 أحرف على الأقل"
-              className="w-full rounded-lg border border-border bg-transparent px-3 py-2.5 text-start text-sm outline-none transition placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/40"
+              className="w-full rounded-lg border border-border bg-card px-3 py-2.5 text-start text-sm outline-none transition placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/40"
             />
           </label>
           <button

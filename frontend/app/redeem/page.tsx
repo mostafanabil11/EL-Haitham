@@ -22,7 +22,7 @@ export default async function RedeemPage() {
       footer={
         <>
           لم تشترِ بعد؟{' '}
-          <Link href="/lectures" className="font-medium text-brand hover:underline">
+          <Link href="/lectures" className="font-medium text-link hover:underline">
             تصفح المحاضرات
           </Link>
         </>

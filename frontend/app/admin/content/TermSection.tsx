@@ -61,7 +61,7 @@ export function TermSection({ term, lectures }: { term: AdminTerm; lectures: Adm
   }
 
   return (
-    <div className="rounded-xl border border-border p-4">
+    <div className="rounded-2xl border border-border bg-card p-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2">
           <h3 className="text-sm font-semibold">{term.titleAr}</h3>
@@ -76,7 +76,7 @@ export function TermSection({ term, lectures }: { term: AdminTerm; lectures: Adm
           <button
             type="button"
             onClick={() => setAdding((value) => !value)}
-            className="rounded-lg border border-border px-3 py-1.5 text-xs transition hover:border-brand/60"
+            className="rounded-lg border border-border px-3 py-1.5 text-xs transition hover:border-brand/40"
           >
             إضافة محاضرة
           </button>
@@ -84,7 +84,7 @@ export function TermSection({ term, lectures }: { term: AdminTerm; lectures: Adm
             type="button"
             onClick={archiveTerm}
             disabled={pending}
-            className="rounded-lg border border-border px-3 py-1.5 text-xs text-muted transition hover:border-brand/60 disabled:opacity-60"
+            className="rounded-lg border border-border px-3 py-1.5 text-xs text-muted transition hover:border-brand/40 disabled:opacity-60"
           >
             {term.isArchived ? 'إلغاء الأرشفة' : 'أرشفة'}
           </button>
@@ -101,7 +101,7 @@ export function TermSection({ term, lectures }: { term: AdminTerm; lectures: Adm
               minLength={2}
               maxLength={200}
               placeholder="المحاضرة الأولى — الجملة الاسمية"
-              className="rounded-lg border border-border bg-transparent px-3 py-2 text-sm outline-none transition placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/40"
+              className="rounded-lg border border-border bg-card px-3 py-2 text-sm outline-none transition placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/40"
             />
           </label>
           <label className="flex flex-col gap-1.5 text-sm">
@@ -114,7 +114,7 @@ export function TermSection({ term, lectures }: { term: AdminTerm; lectures: Adm
               defaultValue={75}
               required
               dir="ltr"
-              className="w-28 rounded-lg border border-border bg-transparent px-3 py-2 text-start text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
+              className="w-28 rounded-lg border border-border bg-card px-3 py-2 text-start text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/40"
             />
           </label>
           <button
@@ -128,7 +128,7 @@ export function TermSection({ term, lectures }: { term: AdminTerm; lectures: Adm
       )}
 
       {error && (
-        <p role="alert" className="mt-3 text-sm text-red-500">
+        <p role="alert" className="mt-3 text-sm text-danger">
           {error}
         </p>
       )}
@@ -139,7 +139,7 @@ export function TermSection({ term, lectures }: { term: AdminTerm; lectures: Adm
             <li key={lecture._id}>
               <Link
                 href={`/admin/content/lectures/${lecture._id}`}
-                className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border px-3 py-2.5 transition hover:border-brand/60"
+                className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-card px-3 py-2.5 transition hover:border-brand/40"
               >
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
@@ -156,7 +156,7 @@ export function TermSection({ term, lectures }: { term: AdminTerm; lectures: Adm
                     {formatDuration(lecture.totalDurationSeconds)}
                   </p>
                 </div>
-                <span className="shrink-0 text-xs text-brand">تحرير</span>
+                <span className="shrink-0 text-xs text-link">تحرير</span>
               </Link>
             </li>
           ))}

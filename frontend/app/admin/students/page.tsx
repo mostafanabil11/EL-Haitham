@@ -29,7 +29,7 @@ export default async function StudentsPage({
           type="search"
           defaultValue={q ?? ''}
           placeholder="ابحث برقم الهاتف أو رقم ولي الأمر أو الاسم"
-          className="w-full rounded-lg border border-border bg-transparent px-3 py-2.5 text-sm outline-none transition placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/40"
+          className="w-full rounded-lg border border-border bg-card px-3 py-2.5 text-sm outline-none transition placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/40"
         />
         <button
           type="submit"
@@ -47,7 +47,7 @@ export default async function StudentsPage({
             <li key={student._id}>
               <Link
                 href={`/admin/students/${student._id}`}
-                className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border px-4 py-3 transition hover:border-brand/60"
+                className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-card px-4 py-3 transition hover:border-brand/40"
               >
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
@@ -61,7 +61,7 @@ export default async function StudentsPage({
                     {` · انضم ${formatDateAr(student.createdAt)}`}
                   </p>
                 </div>
-                <span className="shrink-0 text-xs text-brand">التفاصيل</span>
+                <span className="shrink-0 text-xs text-link">التفاصيل</span>
               </Link>
             </li>
           ))}

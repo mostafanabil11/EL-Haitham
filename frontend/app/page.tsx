@@ -17,11 +17,11 @@ export default async function Home() {
     <main className="flex w-full flex-1 flex-col">
       <Hero settings={settings} total={total} signedIn={!!user} />
 
-      <section className="mx-auto w-full max-w-5xl px-5 py-12">
+      <section className="mx-auto w-full max-w-5xl px-5 py-14">
         <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
           <h2 className="text-xl font-bold">أحدث المحاضرات</h2>
           {total > 0 && (
-            <Link href="/lectures" className="text-sm text-brand hover:underline">
+            <Link href="/lectures" className="text-sm text-link hover:underline">
               عرض الكل ({total})
             </Link>
           )}
@@ -35,7 +35,7 @@ export default async function Home() {
             <Link
               key={grade}
               href={`/lectures?grade=${grade}`}
-              className="rounded-full border border-border px-3.5 py-1.5 text-sm text-muted transition hover:border-brand/60 hover:text-foreground"
+              className="rounded-full border border-border px-3.5 py-1.5 text-sm text-muted transition hover:border-brand/40 hover:text-foreground"
             >
               {GRADE_LABELS_AR[grade]}
             </Link>
@@ -43,7 +43,7 @@ export default async function Home() {
         </nav>
 
         {lectures.length === 0 ? (
-          <p className="rounded-xl border border-dashed border-border p-8 text-center text-sm text-muted">
+          <p className="rounded-2xl border border-dashed border-border p-8 text-center text-sm text-muted">
             لا توجد محاضرات منشورة بعد.
           </p>
         ) : (
@@ -68,7 +68,7 @@ export default async function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 dir="ltr"
-                className="text-brand hover:underline"
+                className="text-link hover:underline"
               >
                 {toLocalPhone(settings.whatsappNumber)}
               </a>
@@ -90,33 +90,45 @@ function Hero({
   signedIn: boolean;
 }) {
   return (
-    <section className="border-b border-border">
+    <section className="mx-auto w-full max-w-5xl px-5 pt-8">
       {/*
-        A soft brand wash behind the hero rather than a photo. There is no
-        photography to rely on — the teacher supplies none — and a tinted
-        gradient reads as designed in both palettes, where a placeholder image
-        reads as unfinished in either.
+        A navy panel rather than a tinted page section. In this design system
+        navy is the institution speaking — it frames the one thing the visitor
+        is meant to do — and the single action sitting on it is gold, which is
+        how every call to action on a dark surface reads in the mockups.
+
+        It also stays navy in both themes: it is a deliberate surface, not a
+        consequence of the current palette.
       */}
-      <div className="bg-gradient-to-b from-brand/10 to-transparent">
-        <div className="mx-auto w-full max-w-5xl px-5 py-16 sm:py-20">
+      <div className="relative overflow-hidden rounded-3xl bg-panel px-6 py-12 sm:px-10 sm:py-16">
+        {/* A soft gold bloom in the upper corner, which in RTL is the side the
+            eye starts from. Purely atmospheric, and cheap — no image to load. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-24 -start-24 size-72 rounded-full bg-accent/20 blur-3xl"
+        />
+
+        <div className="relative">
           {settings?.teacherName && (
-            <p className="mb-3 inline-flex items-center rounded-full border border-brand/30 bg-brand/10 px-3 py-1 text-xs font-medium text-brand">
+            <p className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
               مع {settings.teacherName}
             </p>
           )}
 
-          <h1 className="max-w-3xl text-4xl font-bold leading-[1.15] sm:text-5xl">
+          <h1 className="max-w-3xl text-3xl font-bold leading-[1.25] text-panel-foreground sm:text-[40px]">
             {settings?.siteName ?? 'منصة اللغة العربية'}
           </h1>
 
           {settings?.tagline && (
-            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted">{settings.tagline}</p>
+            <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-panel-muted">
+              {settings.tagline}
+            </p>
           )}
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/lectures"
-              className="rounded-lg bg-brand px-5 py-3 text-base font-semibold text-brand-contrast transition hover:opacity-90"
+              className="rounded-xl bg-accent px-5 py-3 text-base font-semibold text-accent-contrast transition hover:opacity-90"
             >
               تصفح المحاضرات
             </Link>
@@ -124,25 +136,16 @@ function Hero({
                 again is the kind of dead button that makes a site feel
                 untended. They get the code entry instead, which is what they
                 come back for. */}
-            {signedIn ? (
-              <Link
-                href="/redeem"
-                className="rounded-lg border border-border px-5 py-3 text-base font-medium transition hover:border-brand/60"
-              >
-                تفعيل كود
-              </Link>
-            ) : (
-              <Link
-                href="/register"
-                className="rounded-lg border border-border px-5 py-3 text-base font-medium transition hover:border-brand/60"
-              >
-                إنشاء حساب
-              </Link>
-            )}
+            <Link
+              href={signedIn ? '/redeem' : '/register'}
+              className="rounded-xl border border-panel-foreground/25 px-5 py-3 text-base font-medium text-panel-foreground transition hover:border-panel-foreground/50"
+            >
+              {signedIn ? 'تفعيل كود' : 'إنشاء حساب'}
+            </Link>
           </div>
 
           {total > 0 && (
-            <p className="mt-6 text-sm text-muted">
+            <p className="mt-6 text-sm text-panel-muted">
               {total} محاضرة متاحة الآن · شاهد أول درس من كل محاضرة مجاناً
             </p>
           )}
@@ -175,16 +178,16 @@ function HowItWorks({ whatsappNumber }: { whatsappNumber: string | null }) {
   ];
 
   return (
-    <section className="border-t border-border bg-border/15">
+    <section className="border-t border-border bg-trough">
       <div className="mx-auto w-full max-w-5xl px-5 py-12">
         <h2 className="mb-6 text-xl font-bold">كيف تشترك؟</h2>
 
         <ol className="grid gap-4 sm:grid-cols-3">
           {steps.map((step, index) => (
-            <li key={step.title} className="rounded-xl border border-border bg-background p-5">
+            <li key={step.title} className="rounded-2xl border border-border bg-card p-5">
               <span
                 aria-hidden
-                className="mb-3 inline-flex size-8 items-center justify-center rounded-full bg-brand/10 text-sm font-bold text-brand"
+                className="mb-3 inline-flex size-9 items-center justify-center rounded-full bg-accent/15 text-sm font-bold text-accent"
               >
                 {index + 1}
               </span>
@@ -199,7 +202,7 @@ function HowItWorks({ whatsappNumber }: { whatsappNumber: string | null }) {
             href={`https://wa.me/${whatsappNumber}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2.5 text-sm font-medium transition hover:border-brand/60"
+            className="mt-6 inline-flex items-center gap-2 rounded-xl border border-border bg-card px-4 py-2.5 text-sm font-medium transition hover:border-brand/40"
           >
             تواصل معنا على واتساب
           </a>

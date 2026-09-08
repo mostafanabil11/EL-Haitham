@@ -46,7 +46,7 @@ export default async function RequestsPage({
             className={`shrink-0 rounded-lg px-3 py-1.5 text-sm transition ${
               status === tab.value
                 ? 'bg-brand text-brand-contrast font-semibold'
-                : 'border border-border text-muted hover:border-brand/60'
+                : 'border border-border text-muted hover:border-brand/40'
             }`}
           >
             {tab.label}

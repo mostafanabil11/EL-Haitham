@@ -43,7 +43,7 @@ export default async function LecturesPage({
       </nav>
 
       {lectures.length === 0 ? (
-        <p className="rounded-xl border border-dashed border-border p-8 text-center text-sm text-muted">
+        <p className="rounded-2xl border border-dashed border-border p-8 text-center text-sm text-muted">
           لا توجد محاضرات متاحة في هذا الصف حالياً.
         </p>
       ) : (
@@ -65,7 +65,7 @@ function FilterPill({ href, label, active }: { href: string; label: string; acti
       className={`rounded-full border px-3.5 py-1.5 text-sm transition ${
         active
           ? 'border-brand bg-brand text-brand-contrast'
-          : 'border-border text-muted hover:border-brand/60 hover:text-foreground'
+          : 'border-border text-muted hover:border-brand/40 hover:text-foreground'
       }`}
     >
       {label}

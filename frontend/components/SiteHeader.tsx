@@ -18,16 +18,27 @@ export async function SiteHeader() {
   const accountHref = user ? (user.role === 'admin' ? '/admin' : '/dashboard') : '/login';
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-border bg-card/90 backdrop-blur">
       <div className="mx-auto flex h-14 w-full max-w-5xl items-center gap-4 px-5">
-        <Link href="/" className="truncate text-base font-bold transition hover:text-brand">
-          {siteName}
+        {/* The mark is a navy tile with the site's initial — the design leads
+            with a solid navy block, and one letter survives a 375px header
+            where a wordmark would truncate to nothing. */}
+        <Link href="/" className="flex min-w-0 items-center gap-2.5">
+          <span
+            aria-hidden
+            className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-panel text-sm font-bold text-panel-foreground"
+          >
+            {[...siteName.trim()][0] ?? 'م'}
+          </span>
+          <span className="truncate text-base font-bold transition hover:text-link">
+            {siteName}
+          </span>
         </Link>
 
         <nav className="ms-auto flex items-center gap-1 text-sm">
           <Link
             href="/lectures"
-            className="rounded-lg px-3 py-1.5 text-muted transition hover:bg-border/40 hover:text-foreground"
+            className="rounded-lg px-3 py-1.5 text-muted transition hover:bg-trough hover:text-foreground"
           >
             المحاضرات
           </Link>
@@ -38,7 +49,7 @@ export async function SiteHeader() {
           {user && user.role !== 'admin' && (
             <Link
               href="/redeem"
-              className="rounded-lg px-3 py-1.5 text-muted transition hover:bg-border/40 hover:text-foreground"
+              className="rounded-lg px-3 py-1.5 text-muted transition hover:bg-trough hover:text-foreground"
             >
               تفعيل كود
             </Link>
@@ -61,8 +72,8 @@ function AccountButton({ href, name }: { href: string; name: string | null }) {
         href={href}
         aria-label="تسجيل الدخول"
         title="تسجيل الدخول"
-        className="inline-flex size-8 items-center justify-center rounded-lg border border-border
-          text-muted transition hover:border-brand/60 hover:text-foreground"
+        className="inline-flex size-8 items-center justify-center rounded-full border border-border
+          text-muted transition hover:border-brand/40 hover:text-foreground"
       >
         <svg
           width="16"
@@ -90,8 +101,8 @@ function AccountButton({ href, name }: { href: string; name: string | null }) {
       href={href}
       aria-label={`حسابي — ${name}`}
       title={name}
-      className="inline-flex size-8 items-center justify-center rounded-lg bg-brand text-sm
-        font-bold text-brand-contrast transition hover:opacity-90"
+      className="inline-flex size-8 items-center justify-center rounded-full bg-accent text-sm
+        font-bold text-accent-contrast transition hover:opacity-90"
     >
       {[...name.trim()][0] ?? '؟'}
     </Link>

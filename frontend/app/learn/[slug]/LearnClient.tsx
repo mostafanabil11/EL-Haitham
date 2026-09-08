@@ -75,7 +75,7 @@ export function LearnClient({
         {!active.unlocked && (
           <div className="rounded-lg border border-brand/40 bg-brand/5 p-4 text-sm">
             <p className="mb-2">هذا الدرس متاح للمشتركين فقط.</p>
-            <Link href={`/lectures/${lectureSlug}`} className="font-medium text-brand hover:underline">
+            <Link href={`/lectures/${lectureSlug}`} className="font-medium text-link hover:underline">
               اشترك في المحاضرة
             </Link>
           </div>
@@ -108,7 +108,7 @@ export function LearnClient({
                 </span>
               )}
               {item.isFreePreview && !hasAccess && (
-                <span className="shrink-0 text-[10px] text-brand">مجاني</span>
+                <span className="shrink-0 text-[10px] text-link">مجاني</span>
               )}
             </button>
           );

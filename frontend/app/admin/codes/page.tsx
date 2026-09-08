@@ -51,7 +51,7 @@ export default async function CodesPage({
             className={`shrink-0 rounded-lg px-3 py-1.5 text-sm transition ${
               status === tab.value
                 ? 'bg-brand text-brand-contrast font-semibold'
-                : 'border border-border text-muted hover:border-brand/60'
+                : 'border border-border text-muted hover:border-brand/40'
             }`}
           >
             {tab.label}
@@ -68,7 +68,7 @@ export default async function CodesPage({
           <span dir="ltr" className="font-mono">
             {params.batchId}
           </span>
-          <Link href="/admin/codes" className="text-xs text-brand hover:underline">
+          <Link href="/admin/codes" className="text-xs text-link hover:underline">
             إزالة الفلتر
           </Link>
         </div>

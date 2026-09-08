@@ -17,7 +17,7 @@ export default async function RegisterPage() {
   if (settings && settings.isRegistrationOpen === false) {
     return (
       <AuthCard title="التسجيل مغلق حالياً" subtitle="تواصل مع المدرس لمعرفة موعد فتح التسجيل.">
-        <Link href="/" className="text-sm font-medium text-brand hover:underline">
+        <Link href="/" className="text-sm font-medium text-link hover:underline">
           العودة للرئيسية
         </Link>
       </AuthCard>
@@ -31,7 +31,7 @@ export default async function RegisterPage() {
       footer={
         <>
           لديك حساب بالفعل؟{' '}
-          <Link href="/login" className="font-medium text-brand hover:underline">
+          <Link href="/login" className="font-medium text-link hover:underline">
             تسجيل الدخول
           </Link>
         </>

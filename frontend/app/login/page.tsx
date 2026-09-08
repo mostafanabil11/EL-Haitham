@@ -32,7 +32,7 @@ export default async function LoginPage({
       footer={
         <>
           ليس لديك حساب؟{' '}
-          <Link href="/register" className="font-medium text-brand hover:underline">
+          <Link href="/register" className="font-medium text-link hover:underline">
             أنشئ حساباً جديداً
           </Link>
         </>

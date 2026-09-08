@@ -23,11 +23,11 @@ export default async function LectureEditorPage({ params }: { params: Promise<{ 
         action={
           <div className="flex gap-3 text-sm">
             {lecture.isPublished && (
-              <Link href={`/lectures/${lecture.slug}`} className="text-brand hover:underline">
+              <Link href={`/lectures/${lecture.slug}`} className="text-link hover:underline">
                 معاينة
               </Link>
             )}
-            <Link href="/admin/content" className="text-brand hover:underline">
+            <Link href="/admin/content" className="text-link hover:underline">
               رجوع
             </Link>
           </div>

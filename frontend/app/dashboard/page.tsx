@@ -40,7 +40,7 @@ export default async function DashboardPage() {
         </Link>
         <Link
           href="/lectures"
-          className="rounded-lg border border-border px-4 py-2.5 text-sm transition hover:border-brand/60"
+          className="rounded-lg border border-border px-4 py-2.5 text-sm transition hover:border-brand/40"
         >
           تصفح المحاضرات
         </Link>
@@ -50,9 +50,9 @@ export default async function DashboardPage() {
         <h2 className="text-lg font-semibold">محاضراتي ({active.length})</h2>
 
         {active.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-border p-6 text-center">
+          <div className="rounded-2xl border border-dashed border-border p-6 text-center">
             <p className="mb-3 text-sm text-muted">لا توجد محاضرات في حسابك بعد.</p>
-            <Link href="/redeem" className="text-sm font-medium text-brand hover:underline">
+            <Link href="/redeem" className="text-sm font-medium text-link hover:underline">
               لديك كود؟ فعّله الآن
             </Link>
           </div>
@@ -62,7 +62,7 @@ export default async function DashboardPage() {
               <li key={e.id}>
                 <Link
                   href={`/learn/${e.lecture!.slug}`}
-                  className="flex items-center justify-between gap-3 rounded-lg border border-border px-4 py-3 transition hover:border-brand/60"
+                  className="flex items-center justify-between gap-3 rounded-xl border border-border bg-card px-4 py-3 transition hover:border-brand/40"
                 >
                   <div className="min-w-0">
                     <p className="truncate text-sm font-medium">{e.lecture!.titleAr}</p>
@@ -76,7 +76,7 @@ export default async function DashboardPage() {
                         })}`}
                     </p>
                   </div>
-                  <span className="shrink-0 text-xs text-brand">مشاهدة</span>
+                  <span className="shrink-0 text-xs text-link">مشاهدة</span>
                 </Link>
               </li>
             ))}
@@ -91,7 +91,7 @@ export default async function DashboardPage() {
             {expired.map((e) => (
               <li
                 key={e.id}
-                className="flex items-center justify-between gap-3 rounded-lg border border-border px-4 py-3 opacity-60"
+                className="flex items-center justify-between gap-3 rounded-xl border border-border bg-card px-4 py-3 opacity-60"
               >
                 <p className="truncate text-sm">{e.lecture!.titleAr}</p>
                 <span className="shrink-0 text-xs text-muted">منتهي</span>
@@ -101,7 +101,7 @@ export default async function DashboardPage() {
         </section>
       )}
 
-      <section className="rounded-xl border border-border p-5">
+      <section className="rounded-2xl border border-border bg-card p-5">
         <h2 className="mb-3 text-sm font-semibold">بيانات الحساب</h2>
         <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-sm">
           <dt className="text-muted">رقم الهاتف</dt>

@@ -88,7 +88,7 @@ export default async function LecturePage({ params }: Props) {
           {freeCount > 0 && (
             <>
               <span aria-hidden>·</span>
-              <span className="text-brand">{freeCount} درس مجاني</span>
+              <span className="text-link">{freeCount} درس مجاني</span>
             </>
           )}
         </div>
@@ -96,7 +96,7 @@ export default async function LecturePage({ params }: Props) {
 
       {owned ? (
         <section className="flex flex-col gap-2 rounded-xl border border-brand/40 bg-brand/5 p-5">
-          <p className="font-semibold text-brand">أنت مشترك في هذه المحاضرة</p>
+          <p className="font-semibold text-link">أنت مشترك في هذه المحاضرة</p>
           <Link
             href={`/learn/${lecture.slug}`}
             className="rounded-lg bg-brand px-4 py-3 text-center text-base font-semibold text-brand-contrast transition hover:opacity-90"
@@ -108,7 +108,7 @@ export default async function LecturePage({ params }: Props) {
       <section className="flex flex-col gap-3 rounded-xl border border-brand/40 bg-brand/5 p-5">
         <div className="flex items-baseline justify-between gap-4">
           <span className="text-sm text-muted">سعر المحاضرة</span>
-          <span className="text-2xl font-bold text-brand">{price}</span>
+          <span className="text-2xl font-bold text-link">{price}</span>
         </div>
 
         <BuyButton
@@ -120,7 +120,7 @@ export default async function LecturePage({ params }: Props) {
 
         <p className="text-xs text-muted">
           بعد الدفع ستستلم كوداً تفعّله من{' '}
-          <Link href="/redeem" className="text-brand hover:underline">
+          <Link href="/redeem" className="text-link hover:underline">
             صفحة تفعيل الكود
           </Link>
           .
@@ -139,7 +139,7 @@ export default async function LecturePage({ params }: Props) {
           {lecture.items.map((item, index) => (
             <li
               key={item.id}
-              className="flex items-center gap-3 rounded-lg border border-border px-4 py-3"
+              className="flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3"
             >
               <span className="w-6 shrink-0 text-sm text-muted">{index + 1}</span>
 
@@ -154,7 +154,7 @@ export default async function LecturePage({ params }: Props) {
               {item.isFreePreview ? (
                 <Link
                   href={`/learn/${lecture.slug}`}
-                  className="shrink-0 rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-brand transition hover:bg-brand/25"
+                  className="shrink-0 rounded-full bg-brand/15 px-2.5 py-1 text-xs font-medium text-link transition hover:bg-brand/25"
                 >
                   شاهد مجاناً
                 </Link>
