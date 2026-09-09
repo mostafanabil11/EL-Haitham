@@ -47,6 +47,7 @@ export default async function LectureEditorPage({ params }: { params: Promise<{ 
         lectureTitle={lecture.titleAr}
         priceMinorUnits={lecture.priceMinorUnits}
         unusedCount={pagination.total}
+        className="mt-8"
       />
     </>
   );

@@ -6,6 +6,8 @@ import { GRADE_LABELS_AR } from '@/lib/grades';
 import { formatPrice, formatDuration, buildWhatsAppLink } from '@/lib/format';
 import { BuyButton } from './BuyButton';
 import { CurriculumList } from './CurriculumList';
+import { LectureCodes } from '@/app/admin/content/lectures/[id]/LectureCodes';
+import { getAccessCodes } from '@/lib/admin-api';
 import { getMyEnrollments } from '@/lib/server-api';
 
 type Props = { params: Promise<{ slug: string }> };
@@ -59,6 +61,15 @@ export default async function LecturePage({ params }: Props) {
   // buy button for something they have paid for.
   const enrollments = user ? await getMyEnrollments() : [];
   const owned = enrollments.some((e) => e.lecture?.slug === lecture.slug);
+
+  // The teacher reads this page as a student would whenever someone messages
+  // him about a lecture, and that is exactly the moment he needs to cut a
+  // code. Fetched only for him — a student never pays for this query, and the
+  // admin API would refuse them anyway.
+  const isAdmin = user?.role === 'admin';
+  const codeCount = isAdmin
+    ? (await getAccessCodes({ lectureId: lecture._id, status: 'unused', limit: 1 })).pagination.total
+    : 0;
 
   const price = formatPrice(lecture.priceMinorUnits);
   const whatsappLink = buildWhatsAppLink(settings?.whatsappNumber ?? null, lecture.titleAr, price);
@@ -127,6 +138,20 @@ export default async function LecturePage({ params }: Props) {
           .
         </p>
       </section>
+      )}
+
+      {isAdmin && (
+        // Marked as a teacher tool and dashed, so it never reads as part of
+        // what a student sees on the same page.
+        <section className="rounded-2xl border border-dashed border-accent/50 bg-accent/5 p-1">
+          <p className="px-5 pt-4 text-xs font-semibold text-accent">أدوات المدرس — لا يراها الطلاب</p>
+          <LectureCodes
+            lectureId={lecture._id}
+            lectureTitle={lecture.titleAr}
+            priceMinorUnits={lecture.priceMinorUnits}
+            unusedCount={codeCount}
+          />
+        </section>
       )}
 
       <section className="flex flex-col gap-6">

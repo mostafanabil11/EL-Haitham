@@ -24,11 +24,13 @@ export function LectureCodes({
   lectureTitle,
   priceMinorUnits,
   unusedCount,
+  className = '',
 }: {
   lectureId: string;
   lectureTitle: string;
   priceMinorUnits: number;
   unusedCount: number;
+  className?: string;
 }) {
   const router = useRouter();
   const [pending, setPending] = useState(false);
@@ -75,7 +77,7 @@ export function LectureCodes({
     `كود تفعيل ${lectureTitle}\n\nالكود: ${code}\n\nفعّله من صفحة «تفعيل كود» على المنصة.`;
 
   return (
-    <section className="mt-8 rounded-2xl border border-border bg-card p-5 sm:p-6">
+    <section className={`rounded-2xl border border-border bg-card p-5 sm:p-6 ${className}`}>
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div>
           <h2 className="text-base font-semibold">أكواد هذه المحاضرة</h2>
