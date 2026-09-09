@@ -62,6 +62,18 @@ export default async function CodesPage({
       {/* A batch filter arrives as a link from the generate panel, so it needs
           a visible way back out — otherwise the list silently shows 12 of 300
           codes and looks broken. */}
+      {/* A lecture filter arrives as a link from that lecture's page and needs
+          the same way back out as a batch filter — otherwise the list silently
+          shows a handful of 300 codes and looks broken. */}
+      {params.lectureId && (
+        <div className="mb-4 flex flex-wrap items-center gap-2 rounded-xl border border-border bg-card px-4 py-3 text-sm">
+          <span className="text-muted">محاضرة واحدة</span>
+          <Link href="/admin/codes" className="text-xs text-link hover:underline">
+            عرض كل الأكواد
+          </Link>
+        </div>
+      )}
+
       {params.batchId && (
         <div className="mb-4 flex flex-wrap items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm">
           <span className="text-muted">دفعة:</span>
