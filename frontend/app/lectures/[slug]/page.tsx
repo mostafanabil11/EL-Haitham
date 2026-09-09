@@ -5,6 +5,7 @@ import { getLecture, getPublicSettings, getCurrentUser } from '@/lib/server-api'
 import { GRADE_LABELS_AR } from '@/lib/grades';
 import { formatPrice, formatDuration, buildWhatsAppLink } from '@/lib/format';
 import { BuyButton } from './BuyButton';
+import { CurriculumList } from './CurriculumList';
 import { getMyEnrollments } from '@/lib/server-api';
 
 type Props = { params: Promise<{ slug: string }> };
@@ -135,37 +136,7 @@ export default async function LecturePage({ params }: Props) {
             buying — titles, durations, which parts are free — while the
             content itself stays behind the enrollment check. The incumbent
             shows none of this without an account. */}
-        <ol className="flex flex-col gap-2">
-          {lecture.items.map((item, index) => (
-            <li
-              key={item.id}
-              className="flex items-center gap-3 rounded-xl border border-border bg-card px-5 py-5"
-            >
-              <span className="w-6 shrink-0 text-sm text-muted">{index + 1}</span>
-
-              <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium">{item.titleAr}</p>
-                <p className="text-xs text-muted">
-                  {item.type === 'video' ? 'فيديو' : item.type === 'pdf' ? 'ملف' : item.type === 'text' ? 'نص' : 'بث مباشر'}
-                  {item.videoDurationSeconds > 0 && ` · ${formatDuration(item.videoDurationSeconds)}`}
-                </p>
-              </div>
-
-              {item.isFreePreview ? (
-                <Link
-                  href={`/learn/${lecture.slug}`}
-                  className="shrink-0 rounded-full bg-trough px-3 py-2.5 text-xs font-medium text-link transition hover:bg-brand/25"
-                >
-                  شاهد مجاناً
-                </Link>
-              ) : (
-                <span className="shrink-0 text-xs text-muted" title="يتطلب اشتراك">
-                  مقفل
-                </span>
-              )}
-            </li>
-          ))}
-        </ol>
+        <CurriculumList items={lecture.items} slug={lecture.slug} isSignedIn={!!user} />
       </section>
     </main>
   );
