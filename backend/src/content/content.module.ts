@@ -8,6 +8,7 @@ import { Term, TermSchema } from './schemas/term.schema';
 import { Lecture, LectureSchema } from './schemas/lecture.schema';
 import { LectureItem, LectureItemSchema } from './schemas/lecture-item.schema';
 import { SettingsModule } from '@/settings/settings.module';
+import { ConfigModule } from '@/config/config.module';
 
 @Module({
   imports: [
@@ -17,6 +18,9 @@ import { SettingsModule } from '@/settings/settings.module';
       { name: LectureItem.name, schema: LectureItemSchema },
     ]),
     SettingsModule,
+    // Deciding whether a pasted value is a YouTube link depends on the
+    // configured provider.
+    ConfigModule,
   ],
   controllers: [ContentController, ContentAdminController],
   providers: [LecturesService, TermsService],

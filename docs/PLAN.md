@@ -16,7 +16,7 @@ directly to students. Payment happens off-platform over WhatsApp; the teacher ha
 | Frontend | Next.js 15 App Router |
 | Payment | Manual, over WhatsApp. No online payment gateway in v1 |
 | Access model | Student creates an account, then redeems a code **once**; the code binds permanently to that account |
-| Video host | **Deferred.** Build behind a `VideoProvider` interface so the choice is a one-file swap (Phase 4.1) |
+| Video host | **YouTube** (decided 2026-09-09). Unlisted videos on the teacher's channel, embedded in our pages. Still behind the `VideoProvider` interface, so replacing it stays a one-class change |
 
 ### Grounded in the incumbent
 
@@ -472,9 +472,9 @@ hours, and `furthestSeconds` advances by at most 90s per report, so dragging the
 mark a lecture complete. Completion is at **90%**, not 100% — outros mean nobody reaches the true
 end, and a 100% rule silently reports that no student ever finishes anything.
 
-**Still pending:** the provider class itself. `VIDEO_PROVIDER=none` returns an honest "no playback
-available" ticket, so everything above is built and tested; only the video is missing. Choosing a
-host means writing one class and changing one env var.
+**Provider: YouTube.** `VIDEO_PROVIDER=youtube`. The teacher uploads to his own channel and pastes
+the link into the lesson; nothing is hosted here and there is no bandwidth bill. See §4.1 for what
+that trade costs.
 
 **Also not yet done:** admin UI screens, media upload (needs R2 credentials).
 
@@ -492,18 +492,40 @@ interface VideoProvider {
   provider URL never appears in the page source, in API list responses, or in the JS bundle.
 - Implementations to write once the decision lands: `BunnyStreamProvider`, `VimeoProvider`,
   `YouTubeProvider`. Selected by a `VIDEO_PROVIDER` env var.
-- **Recommendation when you decide:** Bunny.net Stream, on the **Volume** delivery tier. Token
-  authentication, hotlink protection, free ABR transcoding, TUS resumable direct upload (so a lecture
-  never passes through Render), and raw HLS output — which matters because the player stays ours, and
-  the watermark overlay sits in our own DOM rather than over a vendor iframe.
-  - **The tier is the whole cost story.** $0.005/GB is the Volume rate. On Standard, Middle East &
-    Africa is $0.06/GB — Bunny's most expensive region, 12× the bill for the same traffic.
-  - Per-view watermarking is *not* a reason to pick it: we do that client-side already. That is also
-    what rules out VdoCipher and Gumlet, whose DRM-plus-burned-in-watermark pitch aims at exactly
-    this market but whose entry tiers exceed the platform's current annual revenue.
-  - Priced per minute delivered, Cloudflare Stream and Mux both land in the hundreds per month at
-    this watch-time. YouTube unlisted is free and has no gate at all, which discards the one thing
-    being sold over the incumbent.
+- **Decided: YouTube.** Zero hosting cost, zero bandwidth cost, no account to configure, and the
+  teacher already knows how to upload there. `YouTubeProvider` implements the same interface as any
+  other; swapping it later is one class and one env var, exactly as this phase was designed for.
+
+- **What that buys and what it costs, stated plainly.** A YouTube id is a *public credential*.
+  Anyone holding it can watch on youtube.com no matter what this platform thinks, and an unlisted
+  video is unlisted, not private. So:
+  - The enrollment gate still decides who is **given** the id — `videoAssetId` is withheld from
+    every payload for anyone without an entitlement, and the ticket is minted per request. A visitor
+    cannot browse the catalogue and harvest links. Verified: anonymous and non-paying both get 403,
+    and the id appears nowhere in a page load.
+  - But once a paying student has it, forwarding it costs them nothing and we cannot revoke it.
+    The moving watermark carrying their name and phone is what is left doing the deterrent work.
+  - This reverses the recommendation this document made while the decision was open. That
+    recommendation still stands **if leaking ever becomes a measurable revenue problem** — that is
+    the trigger to revisit, not a vague sense that YouTube is less secure. It is less secure; it is
+    also free, and the business is small enough that the trade is reasonable today.
+
+- **Three things the implementation gets right, and would be easy to lose in a rewrite:**
+  1. **Links are normalised to a bare id on save.** The teacher pastes what the YouTube app gives
+     him — `?list=`, `&t=`, `&feature=share`. Storing that raw makes the embed inherit it, and
+     `list=` in particular autoplays *the next video in that playlist* when the lecture ends.
+  2. **Playback goes through the IFrame API, not a plain `<iframe>`.** A plain iframe is
+     cross-origin, so `currentTime` is unreadable — resume and progress would have silently sat at
+     zero forever, and the first symptom would have been a parent report claiming a student had
+     watched nothing. Verified live: seek to 0:40, play, and `furthestSeconds` lands at 48.
+  3. **A missing or unparseable link returns a null-url ticket, not a 404.** A paying student seeing
+     an error page is worse than one seeing "الفيديو غير متاح"; the teacher finds the same lesson
+     flagged «بدون رابط» in the admin list, which is where it actually gets fixed.
+
+- Embed parameters: `youtube-nocookie.com` (students here are minors), `rel=0` so the end screen
+  stays on this channel rather than handing a finished student a competitor, `origin` locked to our
+  frontend so a lifted id cannot be embedded elsewhere, and `modestbranding=1`.
+
 - Regardless of provider: overlay the student's **name and phone, semi-transparent, slowly moving**
   across the player. It will not stop a determined ripper; it does stop casual screen-recording and
   resharing, because the recording identifies the leaker.
@@ -710,7 +732,7 @@ migration announcement goes out over WhatsApp).
 | Render backend | Free tier, or $7/mo to avoid cold starts — **worth paying**; cold starts on a video-gating API are visible to students |
 | Vercel frontend | Free |
 | Cloudflare R2 (PDFs) | ~$0.015/GB, no egress fees |
-| Video (Bunny estimate) | **$0.005/GB on the Volume tier only.** 500 students × 10h ≈ 2,500GB ≈ **$12/mo** + ~$2 storage. On the Standard tier, Middle East & Africa is $0.06/GB — the same traffic bills ~$150. Attach the video library to a **Volume-tier** pull zone. |
+| Video (YouTube) | **$0** — hosted on the teacher's own channel, no bandwidth billed to us. If this is ever replaced, budget Bunny Stream on the **Volume** tier: ~$0.005/GB, so 500 students × 10h ≈ 2,500GB ≈ $12/mo. On Bunny's Standard tier, Middle East & Africa is $0.06/GB and the same traffic bills ~$150. |
 | Brevo email | Free to 300/day |
 | Domain | ~$12/yr |
 
@@ -720,7 +742,8 @@ Under $25/month at launch scale.
 
 ## Open questions to resolve before Phase 4
 
-1. **Video provider** — deferred by design; needed by Phase 4.1.
+1. ~~**Video provider**~~ — **resolved: YouTube**, 2026-09-09. Revisit if leaking becomes a
+   measurable revenue problem; see §4.1 for the trade.
 2. **Access duration** — lifetime, or until the end of the academic year? The incumbent archives
    everything yearly, which suggests year-scoped access. Recommendation: per-lecture
    `accessDurationDays`, defaulting to the end of the academic year.

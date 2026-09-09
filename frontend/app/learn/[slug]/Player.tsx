@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { apiFetch } from '@/lib/api';
 import { Watermark } from '@/components/Watermark';
+import { YouTubeFrame } from './YouTubeFrame';
 
 type Ticket = {
   url: string | null;
@@ -25,6 +26,10 @@ const REPORT_INTERVAL_MS = 15000;
 
 export function Player({ itemId, resumeAt, canPlay }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  // Written by the iframe player on every tick; read by the same interval that
+  // reports a <video> element's currentTime, so both providers share one
+  // reporting path rather than growing a second one.
+  const framePositionRef = useRef<number | null>(null);
   const [ticket, setTicket] = useState<Ticket | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -58,10 +63,16 @@ export function Player({ itemId, resumeAt, canPlay }: Props) {
 
     const report = () => {
       const el = videoRef.current;
-      if (!el || el.paused) return;
+      const position = el
+        ? el.paused
+          ? null
+          : Math.floor(el.currentTime)
+        : framePositionRef.current;
+      if (position === null) return;
+
       apiFetch('/learn/progress', {
         method: 'POST',
-        body: JSON.stringify({ itemId, positionSeconds: Math.floor(el.currentTime) }),
+        body: JSON.stringify({ itemId, positionSeconds: position }),
         // A failed progress write must never surface to the student — it is
         // bookkeeping, not the lesson.
       }).catch(() => {});
@@ -86,24 +97,34 @@ export function Player({ itemId, resumeAt, canPlay }: Props) {
     <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-border bg-black">
       {ticket?.url ? (
         <>
-          <video
-            ref={videoRef}
-            src={ticket.kind === 'mp4' ? ticket.url : undefined}
-            controls
-            controlsList="nodownload"
-            onContextMenu={(e) => e.preventDefault()}
-            playsInline
-            className="h-full w-full"
-            onLoadedMetadata={(e) => {
-              // Resume once, and only if there is meaningful distance left —
-              // dropping someone back at the last 10 seconds is worse than
-              // starting over.
-              if (hasResumed.current) return;
-              hasResumed.current = true;
-              const el = e.currentTarget;
-              if (resumeAt > 5 && resumeAt < el.duration - 10) el.currentTime = resumeAt;
-            }}
-          />
+          {ticket.kind === 'iframe' ? (
+            <YouTubeFrame
+              embedUrl={ticket.url}
+              resumeAt={resumeAt}
+              onTick={(seconds) => {
+                framePositionRef.current = seconds;
+              }}
+            />
+          ) : (
+            <video
+              ref={videoRef}
+              src={ticket.kind === 'mp4' ? ticket.url : undefined}
+              controls
+              controlsList="nodownload"
+              onContextMenu={(e) => e.preventDefault()}
+              playsInline
+              className="h-full w-full"
+              onLoadedMetadata={(e) => {
+                // Resume once, and only if there is meaningful distance left —
+                // dropping someone back at the last 10 seconds is worse than
+                // starting over.
+                if (hasResumed.current) return;
+                hasResumed.current = true;
+                const el = e.currentTarget;
+                if (resumeAt > 5 && resumeAt < el.duration - 10) el.currentTime = resumeAt;
+              }}
+            />
+          )}
           {ticket.watermark && <Watermark text={ticket.watermark.text} />}
         </>
       ) : (

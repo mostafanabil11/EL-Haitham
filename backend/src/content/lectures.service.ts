@@ -15,6 +15,8 @@ import {
   ReorderDto,
   CatalogQueryDto,
 } from './dto';
+import { extractYouTubeId } from '@/video/youtube-id.util';
+import { ConfigService } from '@/config/config.service';
 
 @Injectable()
 export class LecturesService {
@@ -22,6 +24,7 @@ export class LecturesService {
     @InjectModel(Lecture.name) private lectureModel: Model<LectureDocument>,
     @InjectModel(LectureItem.name) private itemModel: Model<LectureItemDocument>,
     @InjectModel(Term.name) private termModel: Model<TermDocument>,
+    private configService: ConfigService,
   ) {}
 
   private objectId(id: string): Types.ObjectId {
@@ -193,6 +196,36 @@ export class LecturesService {
 
   // --- Admin: items ---
 
+
+  /**
+   * Stores the bare YouTube id, whatever shape the teacher pasted.
+   *
+   * He pastes what the YouTube app hands him — a share link, a browser URL
+   * with `?list=` and `&t=` hanging off it. Storing that raw makes the embed
+   * inherit those parameters, and `list=` in particular makes the player
+   * autoplay the next video in that playlist when the lecture ends.
+   *
+   * Rejecting outright rather than storing something unplayable: a lecture
+   * that looks saved and shows an error to a paying student is worse than a
+   * form that refuses.
+   */
+  private normalizeVideoAsset(value: string | null | undefined): string | null | undefined {
+    if (value === undefined) return undefined;
+    if (value === null || value.trim() === '') return null;
+
+    // Only YouTube ids are parseable. Under any other provider the field is an
+    // opaque asset id and must pass through untouched.
+    if (this.configService.videoProvider !== 'youtube') return value.trim();
+
+    const id = extractYouTubeId(value);
+    if (!id) {
+      throw new BadRequestException(
+        'رابط يوتيوب غير صالح. الصق رابط الفيديو كاملاً، مثل https://youtu.be/xxxxxxxxxxx',
+      );
+    }
+    return id;
+  }
+
   async addItem(lectureId: string, dto: CreateLectureItemDto) {
     const _id = this.objectId(lectureId);
     const lecture = await this.lectureModel.findById(_id);
@@ -200,6 +233,7 @@ export class LecturesService {
 
     const item = await this.itemModel.create({
       ...dto,
+      videoAssetId: this.normalizeVideoAsset(dto.videoAssetId) ?? null,
       lecture: _id,
       order: dto.order ?? (await this.itemModel.countDocuments({ lecture: _id })),
     });
@@ -213,6 +247,9 @@ export class LecturesService {
     if (!item) throw new NotFoundException('الدرس غير موجود');
 
     Object.assign(item, dto);
+    if (dto.videoAssetId !== undefined) {
+      item.videoAssetId = this.normalizeVideoAsset(dto.videoAssetId) ?? null;
+    }
 
     // The cross-field rules from CreateLectureItemDto cannot run on a partial
     // payload, so they are re-checked against the merged document here.

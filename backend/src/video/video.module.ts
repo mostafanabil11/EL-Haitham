@@ -2,6 +2,7 @@ import { Module, Logger } from '@nestjs/common';
 import { ConfigModule } from '@/config/config.module';
 import { ConfigService } from '@/config/config.service';
 import { NoneProvider } from './providers/none.provider';
+import { YouTubeProvider } from './providers/youtube.provider';
 import type { VideoProvider } from './video-provider.interface';
 
 export const VIDEO_PROVIDER = Symbol('VIDEO_PROVIDER');
@@ -18,10 +19,15 @@ export const VIDEO_PROVIDER = Symbol('VIDEO_PROVIDER');
   imports: [ConfigModule],
   providers: [
     NoneProvider,
+    YouTubeProvider,
     {
       provide: VIDEO_PROVIDER,
-      inject: [ConfigService, NoneProvider],
-      useFactory: (configService: ConfigService, none: NoneProvider): VideoProvider => {
+      inject: [ConfigService, NoneProvider, YouTubeProvider],
+      useFactory: (
+        configService: ConfigService,
+        none: NoneProvider,
+        youtube: YouTubeProvider,
+      ): VideoProvider => {
         const logger = new Logger('VideoProvider');
         const choice = configService.videoProvider;
 
@@ -30,9 +36,12 @@ export const VIDEO_PROVIDER = Symbol('VIDEO_PROVIDER');
             logger.warn('VIDEO_PROVIDER=none — lectures will list but not play.');
             return none;
 
-          // case 'bunny':   return new BunnyStreamProvider(configService);
-          // case 'vimeo':   return new VimeoProvider(configService);
-          // case 'youtube': return new YouTubeProvider(configService);
+          case 'youtube':
+            logger.log('VIDEO_PROVIDER=youtube — playback is an embedded YouTube iframe.');
+            return youtube;
+
+          // case 'bunny': return new BunnyStreamProvider(configService);
+          // case 'vimeo': return new VimeoProvider(configService);
 
           default:
             // Falling back rather than throwing: an unrecognised value should

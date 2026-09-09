@@ -199,7 +199,7 @@ export function ItemsManager({
                       <Pill>{TYPE_LABEL[item.type]}</Pill>
                       {item.isFreePreview && <Pill tone="positive">معاينة مجانية</Pill>}
                       {item.type === 'video' && !item.videoAssetId && (
-                        <Pill tone="warning">بدون فيديو</Pill>
+                        <Pill tone="warning">بدون رابط</Pill>
                       )}
                     </div>
                     {item.type === 'video' && item.videoDurationSeconds > 0 && (
@@ -301,12 +301,13 @@ function ItemFields({ item }: { item?: AdminLectureItem }) {
         <>
           <label className="flex flex-col gap-1.5 text-sm">
             <span className="font-medium">
-              معرّف الفيديو <span className="font-normal text-muted">(من مزوّد الفيديو)</span>
+              رابط الفيديو <span className="font-normal text-muted">(الصق رابط يوتيوب)</span>
             </span>
             <input
               name="videoAssetId"
               dir="ltr"
               maxLength={200}
+              placeholder="https://youtu.be/..."
               defaultValue={item?.videoAssetId ?? ''}
               className="form-control text-start text-sm"
             />
