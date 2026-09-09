@@ -55,14 +55,26 @@ export async function SiteHeader() {
 
         <div className="flex shrink-0 items-center gap-2">
           <ThemeToggle />
-          <AccountButton href={accountHref} name={user?.name ?? null} />
+          <AccountButton
+            href={accountHref}
+            name={user?.name ?? null}
+            isAdmin={user?.role === 'admin'}
+          />
         </div>
       </div>
     </header>
   );
 }
 
-function AccountButton({ href, name }: { href: string; name: string | null }) {
+function AccountButton({
+  href,
+  name,
+  isAdmin,
+}: {
+  href: string;
+  name: string | null;
+  isAdmin: boolean;
+}) {
   if (!name) {
     return (
       <Link
@@ -86,6 +98,48 @@ function AccountButton({ href, name }: { href: string; name: string | null }) {
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
           <circle cx="12" cy="7" r="4" />
         </svg>
+      </Link>
+    );
+  }
+
+  /*
+   * The teacher gets a named control, not an avatar.
+   *
+   * An initial in a circle is the universal sign for "your account", and it
+   * said nothing about where it went — on a page that otherwise looks exactly
+   * like what a student sees, the one route back to the admin area was hiding
+   * behind a letter. It is now labelled, and styled as a button rather than a
+   * portrait, because it is a destination and not an identity.
+   */
+  if (isAdmin) {
+    return (
+      <Link
+        href={href}
+        title="لوحة التحكم"
+        className="inline-flex items-center gap-2 rounded-xl bg-brand px-3 py-2.5 text-sm
+          font-semibold text-brand-contrast transition hover:opacity-90 sm:px-4"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden
+          className="shrink-0"
+        >
+          <rect x="3" y="3" width="7" height="9" rx="1.5" />
+          <rect x="14" y="3" width="7" height="5" rx="1.5" />
+          <rect x="14" y="12" width="7" height="9" rx="1.5" />
+          <rect x="3" y="16" width="7" height="5" rx="1.5" />
+        </svg>
+        {/* Hidden below sm so the header does not wrap on a 375px phone, where
+            the icon plus the brand fill still reads as a control. */}
+        <span className="hidden sm:inline">لوحة التحكم</span>
+        <span className="sr-only sm:hidden">لوحة التحكم</span>
       </Link>
     );
   }
